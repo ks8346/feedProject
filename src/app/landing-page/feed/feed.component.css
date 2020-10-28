@@ -1,0 +1,25 @@
+.text{
+    text-align: justify;
+}
+.commentText{
+    text-align: justify;
+    margin: 2% auto;
+}
+.userBlock{
+    border-right: 1px lightgray solid;
+    background-image: linear-gradient(black,white);
+    color:white;
+    opacity: 70%;
+    border-top-left-radius:5px; 
+}
+.post{
+    margin:2em auto;
+}
+.commentBoxLength{
+    width:85%;
+    margin-right: 2em;
+}
+.likeButton{
+    color:rgb(218, 212, 212);
+    border:1px solid lightgray;
+}

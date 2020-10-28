@@ -1,0 +1,29 @@
+<div class="row post">
+    <div class="col-md-1 userBlock">
+        {{post.userId}}
+    </div>
+    <div class="col-md-11 text">
+        {{post.text}}
+    </div>
+</div>
+<section>
+    <button mat-icon-button [class.text-danger]="this.hasLiked" class="likeButton" (click)="postLike(post.id)">
+        <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-stroked-button style="float:right" color="primary">Update</button>
+</section>
+<form >
+    <mat-form-field class="commentBoxLength">
+        <mat-label>Comment</mat-label>
+        <input type="text" matInput name="comment" [(ngModel)]="new_comment" >
+    </mat-form-field>
+    <button type="submit" mat-stroked-button color="primary" (click)="postComment(post.id)">Comment</button>
+</form>
+<hr>
+<p>Comments</p>
+<div class="commentText row" *ngFor="let comment of post.comments">
+    <div class="col-md-1">UserId</div>
+    <div class="col-md-11">{{comment}}</div>
+    <mat-divider></mat-divider>
+</div>
+

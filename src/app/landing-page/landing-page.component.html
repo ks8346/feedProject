@@ -1,0 +1,18 @@
+<p>landing-page works!</p>
+<div class="row contain">
+    <div class="col-md-3 non-scroll">
+         <app-filter (filtered)="onFilter()"></app-filter>
+    </div>
+    <div class="search-results col-md-8" infiniteScroll
+    [infiniteScrollDistance]="3"
+    [infiniteScrollThrottle]="50"
+    (scrolled)="onScroll()">
+        <button mat-stroked-button class="postButton"  color="primary" (click)="openDialog()"> New Proposal</button>
+        <mat-divider></mat-divider>
+        <div>
+            <div *ngFor="let post of feed;index as i">
+                <app-feed class="feed" [post]="post" [userId]="userId"></app-feed>
+            </div>
+        </div>
+    </div> 
+</div>
