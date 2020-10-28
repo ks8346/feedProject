@@ -15,7 +15,7 @@ export class LandingPageComponent implements OnInit {
   newFeed=[];
   name="Kartik";
   userId="ks8346";
-  type="";
+  type="Your Posts";
   constructor(public post:PostProposalService,public dialog:MatDialog,private getProposals:GetProposalsService) { }
 
   ngOnInit(): void {
@@ -31,14 +31,14 @@ export class LandingPageComponent implements OnInit {
     this.feed=this.feed.concat(this.newFeed)
     console.log(this.newFeed)
   }
-  openDialog(){
+  openDialog(id?:number){
     let dialogRef = this.dialog.open(CreateProposalComponent, {
       height: '400px',
       width: '600px',
-      data:{name:this.userId}
+      data:{name:this.userId,id}
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      console.log(`Dialog result: ${result.post_text} ${result.id}`);
       this.post.postProposal(result)
     });
   }

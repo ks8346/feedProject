@@ -10,7 +10,7 @@
     <button mat-icon-button [class.text-danger]="this.hasLiked" class="likeButton" (click)="postLike(post.id)">
         <mat-icon>favorite</mat-icon>
     </button>
-    <button mat-stroked-button style="float:right" color="primary">Update</button>
+    <button [class.d-none]="!this.canUpdate" mat-stroked-button style="float:right" color="primary" (click)="openDialog(post.id)">Update</button>
 </section>
 <form >
     <mat-form-field class="commentBoxLength">

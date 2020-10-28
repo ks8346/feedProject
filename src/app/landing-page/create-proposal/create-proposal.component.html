@@ -1,6 +1,6 @@
 <p>create-proposal works!</p>
-<mat-dialog-content>{{data.name}}</mat-dialog-content>
+<mat-dialog-content>{{data.name}}{{data.id}}</mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="text" cdkFocusInitial>Submit</button>
+    <button mat-button [mat-dialog-close]="{post_text:text,id:data.id}" cdkFocusInitial>Submit</button>
 </mat-dialog-actions>

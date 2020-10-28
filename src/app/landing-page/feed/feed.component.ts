@@ -1,4 +1,4 @@
-import { Component, OnInit ,Input} from '@angular/core';
+import { Component, OnInit ,Input, Output, EventEmitter} from '@angular/core';
 import { Post } from 'src/app/post';
 import {ProposalService} from '../proposal.service'
 @Component({
@@ -9,10 +9,16 @@ import {ProposalService} from '../proposal.service'
 export class FeedComponent implements OnInit {
   @Input() post:Post;
   public new_comment="";
+  public canUpdate=false;
+  @Output() update=new EventEmitter;
   @Input() userId:string;
+  @Input() type:string;
   public hasLiked=false;
   constructor(public proposalWork:ProposalService) { }
   ngOnInit(): void {
+    if(this.type=="Your Posts"){
+      this.canUpdate=true
+    }
   }
   postComment(id:number){
     this.proposalWork.postComment(id,this.new_comment,this.userId);
@@ -28,5 +34,8 @@ export class FeedComponent implements OnInit {
     else{
       this.hasLiked=true
     }
+  }
+  openDialog(id:number){
+    this.update.emit(id)
   }
 }
