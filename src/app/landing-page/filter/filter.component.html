@@ -1,1 +1,27 @@
-<p>filter works!</p>
+
+<div class="view">
+  <hr>
+<div class="mat-typography">
+    <h2 class="alert-heading">Filter Your Feed</h2>
+    
+   
+  </div>
+
+  <input type="date" #startDate >  
+  Start Date 
+  <br><br>
+  <input type="date" #endDate >
+  End Date 
+  <br><br>
+  <button mat-raised-button color="primary" (click)="processFilter(startDate.value,endDate.value)"  >Filter Feed</button>
+
+  <hr>
+  <label for="selection">Select posts</label>&nbsp;&nbsp;
+  <select name = "selection" (change)="selectionChanged(selection.value)" #selection>
+    <option value="yourPost">Your Post</option>
+    <option value="teamPost" selected>Team Post</option>
+    <option value="allPost">All Post</option>
+  </select>
+
+</div> 
+  

@@ -1,7 +1,7 @@
 <p>landing-page works!</p>
 <div class="row contain">
     <div class="col-md-3 non-scroll">
-         <app-filter (filtered)="onFilter()"></app-filter>
+         <app-filter (parentFunctionFilter)="onFilter($event)"></app-filter>
     </div>
     <div class="search-results col-md-8" infiniteScroll
     [infiniteScrollDistance]="3"
