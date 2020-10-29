@@ -11,9 +11,18 @@
     color:white;
     opacity: 70%;
     border-top-left-radius:5px; 
+    padding-top:1%;
 }
 .post{
     margin:2em auto;
+}
+.hidden{
+    height:60px;
+    overflow: hidden;
+}
+.show{
+    height:auto;
+    overflow: visible;
 }
 .commentBoxLength{
     width:85%;
@@ -21,5 +30,10 @@
 }
 .likeButton{
     color:rgb(218, 212, 212);
-    border:1px solid lightgray;
+    /* border:1px solid lightgray; */
+    opacity: 70%;
+}
+.title{
+    font-weight: 500;
+    font-size: 22px;
 }

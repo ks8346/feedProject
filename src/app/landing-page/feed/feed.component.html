@@ -1,15 +1,17 @@
-<div class="row post">
+<div class="row post" [class.hidden]="!this.show" [class.show]="this.show" (click)="seeMore()">
     <div class="col-md-1 userBlock">
         {{post.userId}}
     </div>
     <div class="col-md-11 text">
-        {{post.text}}
+        <div class="title">Title</div>
+        <mat-divider></mat-divider>
+        <div>{{post.text}}</div>
     </div>
 </div>
 <section>
-    <button mat-icon-button [class.text-danger]="this.hasLiked" class="likeButton" (click)="postLike(post.id)">
+    <button mat-icon-button [class.text-primary]="this.hasLiked" class="likeButton" (click)="postLike(post.id)">
         <mat-icon>favorite</mat-icon>
-    </button>
+    </button><p style="display:inline">{{this.numberLikes}} people upvoted this</p>
     <button [class.d-none]="!this.canUpdate" mat-stroked-button style="float:right" color="primary" (click)="openDialog(post.id)">Update</button>
 </section>
 <form >
@@ -17,11 +19,18 @@
         <mat-label>Comment</mat-label>
         <input type="text" matInput name="comment" [(ngModel)]="new_comment" >
     </mat-form-field>
-    <button type="submit" mat-stroked-button color="primary" (click)="postComment(post.id)">Comment</button>
+    <button type="submit" mat-stroked-button color="primary" style="height:35px" (click)="postComment(post.id)">Comment</button>
 </form>
 <hr>
 <p>Comments</p>
-<div class="commentText row" *ngFor="let comment of post.comments">
+<div class="commentText row" [class.d-none]="this.commentVisibility" >
+    <div class="col-md-1">UserId</div>
+    <div class="col-md-11">
+        {{this.comments[0]}}
+        <div (click)="this.commentVisibility=true" style="cursor: pointer; color:blue">See more</div>
+    </div>
+</div>
+<div class="commentText row" *ngFor="let comment of this.comments" [class.d-none]="!this.commentVisibility" >
     <div class="col-md-1">UserId</div>
     <div class="col-md-11">{{comment}}</div>
     <mat-divider></mat-divider>

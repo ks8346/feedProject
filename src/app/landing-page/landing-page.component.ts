@@ -1,9 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GetProposalsService } from '../get-proposals.service';
-import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import { CreateProposalComponent } from './create-proposal/create-proposal.component';
 import {PostProposalService} from 'src/app/post-proposal.service'
-import { Proposal } from '../proposal';
+
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
@@ -44,6 +44,7 @@ export class LandingPageComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result.post_text} ${result.id}`);
       this.post.postProposal(result)
+      this.getProposals.getPosts().subscribe((data)=>this.feed=data);
     });
   }
 
