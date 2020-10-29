@@ -1,6 +1,6 @@
 import { Component, OnInit ,Input, Output, EventEmitter} from '@angular/core';
 import { Post } from 'src/app/post';
-import {ProposalService} from '../proposal.service'
+import {ProposalService} from '../proposal.service';
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
