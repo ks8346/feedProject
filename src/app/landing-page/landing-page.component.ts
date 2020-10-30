@@ -21,8 +21,12 @@ export class LandingPageComponent implements OnInit {
   ngOnInit(): void {
     this.getProposals.getPosts().subscribe((data)=>this.feed=data);
   }
-  onFilter(){
-    this.getProposals.getPosts().subscribe((data)=>this.feed=data);
+  onFilter(data){
+   /** this.getProposals.getPosts().subscribe((data)=>this.feed=data);*/
+   if(Array.isArray(data))
+   console.log(data)
+   else
+   console.log(data)
 
   }
   onScroll(){
