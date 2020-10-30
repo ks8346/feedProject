@@ -8,8 +8,8 @@
     </mat-menu>
 </mat-toolbar>
 <div class="row contain">
-    <div class="col-md-3 non-scroll">
-         <app-filter style="position: fixed;" (parentFunctionFilter)="onFilter($event)"></app-filter>
+    <div class="col-md-3 " style="z-index: 100; background-color: white;"    >
+         <app-filter style="background-color: white;"   (parentFunctionFilter)="onFilter($event)"></app-filter>
     </div>
     <div class="search-results col-md-9" infiniteScroll
     [infiniteScrollDistance]="3"

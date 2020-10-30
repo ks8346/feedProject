@@ -18,6 +18,9 @@
 .non-scroll{
     overflow-y: hidden;
     height: 500px;
+    display:none;
+    position:fixed;
+    z-index: 1000;
 }
 .scrollable{
     widows: 50%;
