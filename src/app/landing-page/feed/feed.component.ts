@@ -33,7 +33,7 @@ export class FeedComponent implements OnInit {
         this.new_comment=""
       },error=>console.error("error")
     );
-    console.log(id+this.userId+this.comments)
+    console.log(id+this.userId+this.new_comment)
     // this.comments.push(this.new_comment)
     // this.new_comment=""
   }
