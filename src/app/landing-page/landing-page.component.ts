@@ -24,7 +24,7 @@ export class LandingPageComponent implements OnInit {
   onFilter(data){
    /** this.getProposals.getPosts().subscribe((data)=>this.feed=data);*/
    if(Array.isArray(data))
-   console.log("Array")
+   console.log(data)
    else
    console.log("posts changed")
 
