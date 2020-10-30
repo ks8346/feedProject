@@ -11,6 +11,9 @@ export class CreateProposalComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<CreateProposalComponent>,@Inject(MAT_DIALOG_DATA) public data:any) { }
 
   ngOnInit(): void {
+    if(!this.data.id){
+      this.data.id=-1
+    }
   }
 
 }

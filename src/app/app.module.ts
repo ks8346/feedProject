@@ -15,7 +15,8 @@ import {MatButtonModule} from '@angular/material/button'
 import {MatIconModule} from '@angular/material/icon';
 import{MatInputModule} from '@angular/material/input'
 import {MatDividerModule} from '@angular/material/divider';
-import {ProposalService} from './landing-page/proposal.service'
+import {ProposalService} from './landing-page/proposal.service';
+import {MatExpansionModule} from '@angular/material/expansion'
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,8 @@ import {ProposalService} from './landing-page/proposal.service'
     MatButtonModule,
     MatIconModule,
     MatInputModule,
-    MatDividerModule
+    MatDividerModule,
+    MatExpansionModule
   ],
   providers: [
     ProposalService,

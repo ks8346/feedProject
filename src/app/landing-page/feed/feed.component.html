@@ -1,4 +1,4 @@
-<div class="row post" [class.hidden]="!this.show" [class.show]="this.show" (click)="seeMore()">
+<!-- <div class="row post" [class.hidden]="!this.show" [class.show]="this.show" (click)="seeMore()">    
     <div class="col-md-1 userBlock">
         {{post.userId}}
     </div>
@@ -7,7 +7,18 @@
         <mat-divider></mat-divider>
         <div>{{post.text}}</div>
     </div>
-</div>
+</div> -->
+<mat-expansion-panel class="post" hideToggle>
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            {{post.userId}}
+        </mat-panel-title>
+        <mat-panel-description class="title">
+            Title
+        </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div>{{post.text}}</div>
+</mat-expansion-panel>
 <section>
     <button mat-icon-button [class.text-primary]="this.hasLiked" class="likeButton" (click)="postLike(post.id)">
         <mat-icon>favorite</mat-icon>

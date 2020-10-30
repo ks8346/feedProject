@@ -13,7 +13,7 @@ export class LandingPageComponent implements OnInit {
   message=null;
   feed=[];
   newFeed=[];
-  name="Kartik";
+  // name="Kartik";
   userId="ks8346";
   type="Your Posts";
   constructor(public post:PostProposalService,public dialog:MatDialog,private getProposals:GetProposalsService) { }
@@ -42,7 +42,7 @@ export class LandingPageComponent implements OnInit {
       data:{name:this.userId,id}
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result.post_text} ${result.id}`);
+      console.log(`Dialog result: ${result.post_text} ${result.id} ${result.userId}`);
       this.post.postProposal(result)
       this.getProposals.getPosts().subscribe((data)=>this.feed=data);
     });
