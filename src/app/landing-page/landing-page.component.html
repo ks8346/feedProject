@@ -1,13 +1,21 @@
-<p>landing-page works!</p>
+<mat-toolbar color="primary" class="header">
+    <span>SBSI</span>
+    <span class="space"></span>
+    <button mat-button [matMenuTriggerFor]="beforeMenu">Hey {{this.name}}!</button>
+    <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <button mat-menu-item>{{this.userId}}</button>
+        <button mat-menu-item>Team</button>
+    </mat-menu>
+</mat-toolbar>
 <div class="row contain">
     <div class="col-md-3 non-scroll">
          <app-filter (parentFunctionFilter)="onFilter($event)"></app-filter>
     </div>
-    <div class="search-results col-md-8" infiniteScroll
+    <div class="search-results col-md-9" infiniteScroll
     [infiniteScrollDistance]="3"
     [infiniteScrollThrottle]="50"
     (scrolled)="onScroll()">
-        <button mat-stroked-button class="postButton"  color="primary" (click)="openDialog()"> New Proposal</button>
+        <button mat-raised-button class="postButton"  color="primary" (click)="openDialog()"> New Proposal</button>
         <mat-divider></mat-divider>
         <div>
             <div *ngFor="let post of feed;index as i">

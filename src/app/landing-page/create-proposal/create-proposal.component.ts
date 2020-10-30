@@ -12,7 +12,7 @@ export class CreateProposalComponent implements OnInit {
 
   ngOnInit(): void {
     if(!this.data.id){
-      this.data.id=-1
+      this.data.id=null
     }
   }
 

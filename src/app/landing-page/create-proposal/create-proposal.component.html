@@ -1,5 +1,18 @@
 <p>create-proposal works!</p>
-<mat-dialog-content>{{data.name}}{{data.id}}</mat-dialog-content>
+<mat-dialog-content>
+    {{data.name}}{{data.id}}
+    <mat-form-field>
+        <mat-label>Favorite food</mat-label>
+        <mat-select>
+            <mat-option value="crackers">
+                crackers
+            </mat-option>
+            <mat-option value="chips">
+                chips
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
     <button mat-button [mat-dialog-close]="{post_text:text,id:data.id,userId:data.name}" cdkFocusInitial>Submit</button>

@@ -33,7 +33,7 @@ export class FeedComponent implements OnInit {
         this.new_comment=""
       },error=>console.error("error")
     );
-    console.log(id+this.userId+this.comments)
+    console.log(id+this.userId+this.new_comment)
     // this.comments.push(this.new_comment)
     // this.new_comment=""
   }
@@ -50,14 +50,14 @@ export class FeedComponent implements OnInit {
       }
     },error=>console.error("error"));
     console.log("liked "+id+this.userId)
-    // if(this.hasLiked){
-    //   this.hasLiked=false
-    //   this.numberLikes-=1;
-    // }
-    // else{
-    //   this.hasLiked=true
-    //   this.numberLikes+=1;
-    // }
+    if(this.hasLiked){
+      this.hasLiked=false
+      this.numberLikes-=1;
+    }
+    else{
+      this.hasLiked=true
+      this.numberLikes+=1;
+    }
   }
   openDialog(id:number){
     this.update.emit(id)
