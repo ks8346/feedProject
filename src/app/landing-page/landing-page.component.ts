@@ -26,7 +26,7 @@ export class LandingPageComponent implements OnInit {
    if(Array.isArray(data))
    console.log(data)
    else
-   console.log("posts changed")
+   console.log(data)
 
   }
   onScroll(){
