@@ -2,9 +2,9 @@
     <span>SBSI</span>
     <span class="space"></span>
     <button mat-button [matMenuTriggerFor]="beforeMenu">Hey {{this.name}}!</button>
-    <mat-menu #beforeMenu="matMenu" xPosition="before">
-        <button mat-menu-item>{{this.userId}}</button>
-        <button mat-menu-item>Team</button>
+    <mat-menu class="menu" #beforeMenu="matMenu" xPosition="before" >
+        <div mat-menu-item>{{this.userId}}</div>
+        <div mat-menu-item>Team</div>
     </mat-menu>
 </mat-toolbar>
 <div class="row contain">
@@ -20,6 +20,7 @@
         <div>
             <div *ngFor="let post of feed;index as i">
                 <app-feed class="feed" [post]="post" [userId]="userId" [type]="type" (update)="openDialog($event)"></app-feed>
+                <mat-divider></mat-divider>
             </div>
         </div>
     </div> 

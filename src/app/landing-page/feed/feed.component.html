@@ -1,13 +1,3 @@
-<!-- <div class="row post" [class.hidden]="!this.show" [class.show]="this.show" (click)="seeMore()">    
-    <div class="col-md-1 userBlock">
-        {{post.userId}}
-    </div>
-    <div class="col-md-11 text">
-        <div class="title">Title</div>
-        <mat-divider></mat-divider>
-        <div>{{post.text}}</div>
-    </div>
-</div> -->
 <mat-expansion-panel class="post" hideToggle>
     <mat-expansion-panel-header class="header">
         <mat-panel-title class="userBlock">
@@ -17,6 +7,7 @@
             Title
         </mat-panel-description>
     </mat-expansion-panel-header>
+    <mat-divider></mat-divider>
     <div class="text">{{post.text}}</div>
 </mat-expansion-panel>
 <section>
@@ -32,8 +23,7 @@
     </mat-form-field>
     <button type="submit" mat-raised-button color="primary" style="height:35px" (click)="postComment(post.id)">Comment</button>
 </form>
-<hr>
-<p>Comments</p>
+<div style="margin:2px auto; border-top: 1px lightgray solid;padding-top: 1%;">Comments</div>
 <div class="commentText row" [class.d-none]="this.commentVisibility" >
     <div class="col-md-1">UserId</div>
     <div class="col-md-11">
@@ -44,6 +34,5 @@
 <div class="commentText row" *ngFor="let comment of this.comments" [class.d-none]="!this.commentVisibility" >
     <div class="col-md-1">UserId</div>
     <div class="col-md-11">{{comment}}</div>
-    <mat-divider></mat-divider>
 </div>
 
