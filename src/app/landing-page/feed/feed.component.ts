@@ -50,14 +50,14 @@ export class FeedComponent implements OnInit {
       }
     },error=>console.error("error"));
     console.log("liked "+id+this.userId)
-    // if(this.hasLiked){
-    //   this.hasLiked=false
-    //   this.numberLikes-=1;
-    // }
-    // else{
-    //   this.hasLiked=true
-    //   this.numberLikes+=1;
-    // }
+    if(this.hasLiked){
+      this.hasLiked=false
+      this.numberLikes-=1;
+    }
+    else{
+      this.hasLiked=true
+      this.numberLikes+=1;
+    }
   }
   openDialog(id:number){
     this.update.emit(id)

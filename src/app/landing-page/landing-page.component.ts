@@ -13,7 +13,7 @@ export class LandingPageComponent implements OnInit {
   message=null;
   feed=[];
   newFeed=[];
-  // name="Kartik";
+  name="Kartik";
   userId="ks8346";
   type="Your Posts";
   constructor(public post:PostProposalService,public dialog:MatDialog,private getProposals:GetProposalsService) { }

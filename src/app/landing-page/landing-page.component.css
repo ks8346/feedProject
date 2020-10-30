@@ -2,10 +2,16 @@
     overflow-x: hidden;
     width: 100%;
 }
+.header{
+    height:40px;
+    margin-bottom: 1em;
+}
 .search-results {
     height: 100%;
 }
-
+.space{
+    flex:1 1 auto;
+}
 .non-scroll{
     overflow-y: hidden;
     height: 500px;
@@ -15,10 +21,11 @@
     height:500px;
 }
 .feed{
-    margin-right: 1%;
+    margin-right: 2%;
 }
 .postButton{
     width:100%;
     height:80px;
     margin-bottom:1%;
+    /* background-color: #5867b9; */
 }
