@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { getLocaleDateFormat } from '@angular/common';
+import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-filter',
@@ -6,10 +7,42 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./filter.component.css']
 })
 export class FilterComponent implements OnInit {
-  @Output() filtered=new EventEmitter()
-  constructor() { }
+ 
+
+ public date:Date[];
+
+ @Output() parentFunctionFilter:EventEmitter<any> = new EventEmitter<any>();
+  constructor() { 
   
+  }
+
   ngOnInit(): void {
+  
+  }
+  processFilter(startDate, endDate)
+  { 
+    this.date = [startDate,endDate]
+   
+    if(startDate=="" || endDate=="")
+    alert("Please select both Start date and End date !!")
+    else
+    if(startDate>endDate)
+    alert("Start Date can not be Greater then End Date")
+    else
+     this.sendData(this.date);
+
+
+   
+  }
+
+  selectionChanged(changed)
+  { 
+     this.sendData(changed);
+  }
+
+  sendData(data)
+  {
+         this.parentFunctionFilter.emit(data) 
   }
 
 }
