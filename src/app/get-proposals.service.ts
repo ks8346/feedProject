@@ -7,11 +7,12 @@ import { Feed } from './feed';
   providedIn: 'root'
 })
 export class GetProposalsService {
-  url="/assets/data/feed.json"
+  url="localhost:8080/feed/all"
   nextUrl="/assets/data/feed1.json"
+  data={startDate:"2020-10-01T18:30:00.000Z",endDate: "2020-11-03T18:30:00.000Z",page:0,size:10}
   constructor(private _http:HttpClient) { }
   getPosts(): Observable<Feed[]>{
-    return this._http.get<Feed[]>(this.url);
+    return this._http.post<Feed[]>(this.url,this.data);
   }
   getNextPost():Observable<Feed[]>{
     if(true){
