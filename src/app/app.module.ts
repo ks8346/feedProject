@@ -20,6 +20,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSelectModule} from '@angular/material/select';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatDatepickerModule} from '@angular/material/datepicker'
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,12 +43,13 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatExpansionModule,
     MatSelectModule,
     MatMenuModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDatepickerModule
   ],
   providers: [
     ProposalService,
     PostProposalService,
-    GetProposalsService,],
+    GetProposalsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
