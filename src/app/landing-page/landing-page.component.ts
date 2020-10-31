@@ -19,7 +19,7 @@ export class LandingPageComponent implements OnInit {
   constructor(public post:PostProposalService,public dialog:MatDialog,private getProposals:GetProposalsService) { }
 
   ngOnInit(): void {
-    this.getProposals.getPosts().subscribe((data)=>this.feed=data);
+    this.getProposals.getPosts().subscribe((data)=>this.feed=data,(error)=>console.log(error));
   }
   onFilter(data){
    /** this.getProposals.getPosts().subscribe((data)=>this.feed=data);*/
