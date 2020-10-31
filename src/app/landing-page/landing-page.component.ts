@@ -3,6 +3,7 @@ import { GetProposalsService } from '../get-proposals.service';
 import {MatDialog} from '@angular/material/dialog';
 import { CreateProposalComponent } from './create-proposal/create-proposal.component';
 import {PostProposalService} from 'src/app/post-proposal.service'
+import { FeedParams } from '../feed-params';
 
 @Component({
   selector: 'app-landing-page',
@@ -15,18 +16,20 @@ export class LandingPageComponent implements OnInit {
   newFeed=[];
   name="Kartik";
   userId="ks8346";
-  type="Your Posts";
+  type="Your Post";
+  date=new Date()
+  data=new FeedParams(new Date(this.date.setDate(this.date.getDate()-30)),new Date(),"0","10")
   constructor(public post:PostProposalService,public dialog:MatDialog,private getProposals:GetProposalsService) { }
 
   ngOnInit(): void {
-    this.getProposals.getPosts().subscribe((data)=>this.feed=data,(error)=>console.log(error));
+    this.getProposals.getPosts(this.data).subscribe((data)=>this.feed=data,(error)=>console.log(error));
   }
   onFilter(data){
    /** this.getProposals.getPosts().subscribe((data)=>this.feed=data);*/
-   if(Array.isArray(data))
-   console.log(data)
-   else
-   console.log(data)
+    if(Array.isArray(data))
+      console.log(data)
+    else
+      console.log(data)
 
   }
   onScroll(){
@@ -44,7 +47,7 @@ export class LandingPageComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result.post_text} ${result.id} ${result.userId}`);
       this.post.postProposal(result)
-      this.getProposals.getPosts().subscribe((data)=>this.feed=data);
+      this.getProposals.getPosts(this.data).subscribe((data)=>this.feed=data);
     });
   }
 }

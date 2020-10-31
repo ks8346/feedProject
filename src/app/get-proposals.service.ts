@@ -7,12 +7,14 @@ import {FeedParams} from './feed-params'
   providedIn: 'root'
 })
 export class GetProposalsService {
-  url="localhost:8080/feed/all"
+  url="http://localhost:8080/feed/all"
   nextUrl="/assets/data/feed1.json"
-  data:FeedParams
+  
   constructor(private _http:HttpClient) { }
-  getPosts(): Observable<Feed[]>{
-    return this._http.post<Feed[]>(this.url,this.data);
+  getPosts(data:FeedParams): Observable<Feed[]>{
+    console.log(data)
+    return this._http.post<Feed[]>(this.url,data);
+   
   }
   getNextPost():Observable<Feed[]>{
     if(true){

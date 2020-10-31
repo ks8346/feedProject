@@ -10,7 +10,7 @@ export class FeedComponent implements OnInit {
   @Input() post:Post;
   public new_comment
   public canUpdate=false;
-  public numberLikes=0;
+  public numberLikes;
   public comments:string[]
   public show=false;
   public commentVisibility=false;
@@ -23,7 +23,8 @@ export class FeedComponent implements OnInit {
     if(this.type=="Your Posts"){
       this.canUpdate=true
     }
-    this.comments=this.post.comments;
+    // this.comments=this.post.comments;
+    this.numberLikes=this.post.upvotesCount;
   }
   postComment(id:number){
     this.proposalWork.postComment(id,this.new_comment,this.userId)
