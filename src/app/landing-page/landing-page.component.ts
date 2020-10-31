@@ -18,8 +18,9 @@ export class LandingPageComponent implements OnInit {
   userId="ks8346";
   type="allPost";
   page=0;
-  date=new Date()
-  data=new FeedParams(new Date(this.date.setDate(this.date.getDate()-30)),new Date(),"0","10")
+  endMessage="";
+  startDate=new Date()
+  data=new FeedParams(new Date(this.startDate.setDate(this.startDate.getDate()-30)),new Date(),"0","10")
   constructor(public post:PostProposalService,public dialog:MatDialog,private getProposals:GetProposalsService) { }
 
   ngOnInit(): void {
@@ -59,17 +60,22 @@ export class LandingPageComponent implements OnInit {
     this.selectApi(this.type)
   }
   onScroll(){
-    this.page++
-    this.data.page=this.page.toString()
-    console.log(this.page)
-    if(this.type=="allPost")
-      this.getProposals.getAllNextPost(this.data).subscribe(data=>this.newFeed=data)
-    else if(this.type=="teamPost")
-      this.getProposals.getAllNextPost(this.data).subscribe(data=>this.newFeed=data)
-    else if(this.type=="yourPost")
-      this.getProposals.getAllNextPost(this.data).subscribe(data=>this.newFeed=data)
-    this.feed=this.feed.concat(this.newFeed)
-    console.log(this.newFeed)
+    if(this.newFeed.length>0 || this.page==0){
+      this.page++
+      this.data.page=this.page.toString()
+      console.log(this.page)
+      if(this.type=="allPost")
+        this.getProposals.getAllNextPost(this.data).subscribe((data)=>this.newFeed=data)
+      else if(this.type=="teamPost")
+        this.getProposals.getAllNextPost(this.data).subscribe((data)=>this.newFeed=data)
+      else if(this.type=="yourPost")
+        this.getProposals.getAllNextPost(this.data).subscribe((data)=>this.newFeed=data)
+      if(this.newFeed.length==0){
+        this.endMessage="No More Posts"
+      }
+      this.feed=this.feed.concat(this.newFeed)
+      console.log(this.newFeed)
+    }
   }
   openDialog(id?:number){
     let dialogRef = this.dialog.open(CreateProposalComponent, {
@@ -80,6 +86,8 @@ export class LandingPageComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result.post_text} ${result.id} ${result.userId}`);
       this.post.postProposal(result)
+      this.page=0
+      this.data.page=this.page.toString()
       this.selectApi(this.type)
     });
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit ,Input, Output, EventEmitter} from '@angular/core';
 import { Post } from 'src/app/post';
 import {ProposalService} from '../proposal.service';
+import {Comment} from '../comment'
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
@@ -8,10 +9,10 @@ import {ProposalService} from '../proposal.service';
 })
 export class FeedComponent implements OnInit {
   @Input() post:Post;
-  public new_comment
+  public new_comment:Comment;
   public canUpdate=false;
-  public numberLikes;
-  public comments:string[]
+  public numberLikes:number;
+  public comments:Comment[]
   public show=false;
   public commentVisibility=false;
   @Output() update=new EventEmitter;
@@ -25,18 +26,19 @@ export class FeedComponent implements OnInit {
     }
     // this.comments=this.post.comments;
     this.numberLikes=this.post.upvotesCount;
+    this.proposalWork.getComment(this.post.id).subscribe((data)=>this.comments=data)
   }
   postComment(id:number){
     this.proposalWork.postComment(id,this.new_comment,this.userId)
     .subscribe(
       (data)=>{
         this.comments.push(this.new_comment)
-        this.new_comment=""
+        this.new_comment.text=""
       },error=>console.error("error")
     );
     console.log(id+this.userId+this.new_comment)
     // this.comments.push(this.new_comment)
-    // this.new_comment=""
+    // this.new_comment.text=""
   }
   postLike(id:number){
     this.proposalWork.postLike(id,this.userId).subscribe(
