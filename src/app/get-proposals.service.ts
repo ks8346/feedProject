@@ -17,8 +17,7 @@ export class GetProposalsService {
   constructor(private _http:HttpClient) { }
   getAllPosts(data:FeedParams): Observable<Feed[]>{
     console.log(data)
-    return this._http.post<Feed[]>(this.allUrl,data);
-   
+    return this._http.post<Feed[]>(this.allUrl,data,{responseType:'json'});
   }
   getAllNextPost(data:FeedParams):Observable<Feed[]>{
     if(true){

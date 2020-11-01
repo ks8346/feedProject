@@ -1,4 +1,7 @@
 <mat-toolbar  color="primary" class="header">
+    <button mat-icon-button (click)="showMenu()" [class.d-none]="!this.menuButton">
+        <mat-icon>menu</mat-icon>
+    </button>
     <span>SBSI</span>
     <span class="space"></span>
     <button mat-button [matMenuTriggerFor]="beforeMenu">Hey {{this.name}}!</button>
@@ -7,9 +10,10 @@
         <div mat-menu-item>Team</div>
     </mat-menu>
 </mat-toolbar>
+<div style="height:50px ;"></div>
 <div class="row contain">
-    <div class="col-md-3 " style="z-index: 100; background-color: white;"    >
-         <app-filter style="background-color: white;"   (parentFunctionFilter)="onFilter($event)"></app-filter>
+    <div class="col-md-3 " style="z-index: 100; background-color: white;" >
+        <app-filter style="background-color: white; position: fixed;" [class.d-none]="!this.menuVisibility"   (parentFunctionFilter)="onFilter($event)"></app-filter>
     </div>
     <div class="search-results col-md-9" infiniteScroll
     [infiniteScrollDistance]="3"

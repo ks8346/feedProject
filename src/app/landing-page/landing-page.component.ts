@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,HostListener} from '@angular/core';
 import { GetProposalsService } from '../get-proposals.service';
 import {MatDialog} from '@angular/material/dialog';
 import { CreateProposalComponent } from './create-proposal/create-proposal.component';
 import {PostProposalService} from 'src/app/post-proposal.service'
 import { FeedParams } from '../feed-params';
 
+  
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
@@ -12,6 +13,9 @@ import { FeedParams } from '../feed-params';
 })
 export class LandingPageComponent implements OnInit {
   message=null;
+  menuVisibility=true;
+  menuButton=false;
+  innerWidth;
   feed=[];
   newFeed=[];
   name="Kartik";
@@ -24,7 +28,10 @@ export class LandingPageComponent implements OnInit {
   constructor(public post:PostProposalService,public dialog:MatDialog,private getProposals:GetProposalsService) { }
 
   ngOnInit(): void {
-    this.getProposals.getAllPosts(this.data).subscribe((data)=>this.feed=data,(error)=>console.log(error));
+    this.getProposals.getAllPosts(this.data).subscribe((data)=>{this.feed=data
+      console.log(data)
+    }
+    ,(error)=>console.log(error));
   }
   getAll(){
     this.getProposals.getAllPosts(this.data).subscribe((data)=>this.feed=data,(error)=>console.log(error));
@@ -63,7 +70,7 @@ export class LandingPageComponent implements OnInit {
     if(this.newFeed.length>0 || this.page==0){
       this.page++
       this.data.page=this.page.toString()
-      console.log(this.page)
+      console.log(this.data)
       if(this.type=="allPost")
         this.getProposals.getAllNextPost(this.data).subscribe((data)=>this.newFeed=data)
       else if(this.type=="teamPost")
@@ -90,5 +97,24 @@ export class LandingPageComponent implements OnInit {
       this.data.page=this.page.toString()
       this.selectApi(this.type)
     });
+  }
+  showMenu(){
+    if(this.menuVisibility){
+      this.menuVisibility=false
+    }
+    else{
+      this.menuVisibility=true
+    }
+  }
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = event.target.innerWidth;
+    if(this.innerWidth<916){
+      this.menuButton=true
+    }
+    else{
+      this.menuButton=false
+      this.menuVisibility=true
+    }
   }
 }

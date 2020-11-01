@@ -1,10 +1,11 @@
 export class Post {
     constructor(
-        public id: number,
-        public title: string,
+        public creationDate: Date,  
         public description: string,
+        public id: number,
+        public teams:[],
+        public title: string,
         public upvotesCount: number,
-        public creationDate: Date,        
         public user: {
             id: number,
             name: string,
@@ -13,8 +14,7 @@ export class Post {
                 id:number,
                 name:string
             }
-        },
-        public teams:[]
+        } 
     )
     {}
 }
