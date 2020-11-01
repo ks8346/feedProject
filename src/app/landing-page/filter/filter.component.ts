@@ -1,17 +1,30 @@
 import { getLocaleDateFormat } from '@angular/common';
 import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
+import { MatStartDate } from '@angular/material/datepicker';
+import { Post } from 'src/app/post';
 
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.css']
 })
+
 export class FilterComponent implements OnInit {
+  @Input() post:Post;
+  public sDate
+  public eDate
+  public data:Date[]
+  public typePost;
+  
+
  
+ 
+  
 
- public date:Date[];
+ @Output() 
+ parentFunctionFilter:EventEmitter<any> = new EventEmitter<any>();
+ public message;
 
- @Output() parentFunctionFilter:EventEmitter<any> = new EventEmitter<any>();
   constructor() { 
   
   }
@@ -19,25 +32,26 @@ export class FilterComponent implements OnInit {
   ngOnInit(): void {
   
   }
-  processFilter(startDate, endDate)
+  processFilter()
   { 
-    this.date = [startDate,endDate]
+    this.data = [this.sDate,this.eDate];
    
-    if(startDate=="" || endDate=="")
-    alert("Please select both Start date and End date !!")
+    if(this.sDate==null || this.eDate==null)
+    this.message = "Please select both Start date and End date !!"
     else
-    if(startDate>endDate)
-    alert("Start Date can not be Greater then End Date")
+    if(this.sDate>this.eDate)
+    this.message = "Start Date can not be Greater then End Date"
     else
-     this.sendData(this.date);
+     this.sendData(this.data);
 
 
    
   }
 
-  selectionChanged(changed)
+  selectionChanged()
   { 
-     this.sendData(changed);
+    console.log(this.typePost)
+     this.sendData(this.typePost);
   }
 
   sendData(data)

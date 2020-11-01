@@ -20,7 +20,11 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSelectModule} from '@angular/material/select';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatDatepickerModule} from '@angular/material/datepicker'
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatNativeDateModule} from '@angular/material/core';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +48,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker'
     MatSelectModule,
     MatMenuModule,
     MatToolbarModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule
   ],
   providers: [
     ProposalService,

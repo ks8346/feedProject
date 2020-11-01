@@ -1,33 +1,72 @@
 
-<div class="view">
-  <hr>
 
 
+            <hr>
+
+              <mat-toolbar>
+                <span>My Application</span>
+              </mat-toolbar>
+
+             
+              <mat-form-field>
+                <mat-label>Select posts</mat-label>
+                <mat-select name = "selection" [(value)]="typePost" role="mat-option" (change)="selectionChanged()" #selection [(ngModel)] = "typePost">
+                    <mat-option value="yourPost">
+                       Your Post
+                    </mat-option>
+                    <mat-option value="teamPost">
+                        Team Post
+                    </mat-option>
+                    <mat-option value="allPost">
+                      All Post
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
+            
+
+                  <hr>
+                
+
+                <mat-form-field appearance="fill">
+                  <mat-label>Select Start Date</mat-label>
+                  <input matInput [matDatepicker]="startDate" [(ngModel)]="sDate" >
+                  <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+                  <mat-datepicker #startDate></mat-datepicker>
+                </mat-form-field>
+        
+                  <mat-form-field appearance="fill">
+                    <mat-label>Select End Date</mat-label>
+                    <input matInput [matDatepicker]="endDate" [(ngModel)]="eDate">
+                    <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+                    <mat-datepicker #endDate></mat-datepicker>
+                  </mat-form-field>
+                  
+                <mat-divider [inset]="true"></mat-divider>
+
+                  <button mat-raised-button color="primary" (click)="processFilter()"  >Filter Feed</button>
+                
+
+      
+                    <div class="mat-typography">
+                        <h2 class="alert-heading">Filter Your Feed</h2>
+                        
+                      </div>
+
+  
+
+  
  
-
-  <label for="selection">Select posts</label>&nbsp;&nbsp;
-  <select name = "selection" (change)="selectionChanged(selection.value)" #selection>
-    <option value="yourPost">Your Post</option>
-    <option value="teamPost" selected>Team Post</option>
-    <option value="allPost">All Post</option>
-  </select>
-<div class="mat-typography">
-    <h2 class="alert-heading">Filter Your Feed</h2>
     
    
-  </div>
   
 
 
-  <input type="date" #startDate >  
-  Start Date 
-  <br><br>
-  <input type="date" #endDate >
-  End Date 
-  <br><br>
-  <button mat-raised-button color="primary" (click)="processFilter(startDate.value,endDate.value)"  >Filter Feed</button>
-
-  <hr>
  
-</div> 
   
+
+ 
+ 
+
+
+
+
