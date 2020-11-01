@@ -47,5 +47,4 @@ export class LandingPageComponent implements OnInit {
       this.getProposals.getPosts().subscribe((data)=>this.feed=data);
     });
   }
-
 }
