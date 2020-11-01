@@ -10,11 +10,13 @@ import {Comment} from '../comment'
 export class FeedComponent implements OnInit {
   @Input() post:Post;
   public new_comment:Comment;
+  public singleComment=new Comment("","");
   public canUpdate=false;
   public numberLikes:number;
-  public comments:Comment[]
+  public comments:Comment[]=[];
   public show=false;
   public commentVisibility=false;
+  public commentsMessage="Comments";
   @Output() update=new EventEmitter;
   @Input() userId:string;
   @Input() type:string;
@@ -26,7 +28,18 @@ export class FeedComponent implements OnInit {
     }
     // this.comments=this.post.comments;
     this.numberLikes=this.post.upvotesCount;
-    this.proposalWork.getComment(this.post.id).subscribe((data)=>this.comments=data)
+    this.proposalWork.getComment(this.post.id).subscribe((data)=>this.comments.concat(data))
+    if(this.comments.length<=1){
+      this.commentVisibility=true
+      if(this.comments.length==0)
+        this.commentsMessage="No comments on this post yet"
+      else{
+        this.singleComment=this.comments[0]
+      }
+    }
+    else{
+      this.singleComment=this.comments[0]
+    }
   }
   postComment(id:number){
     this.proposalWork.postComment(id,this.new_comment,this.userId)

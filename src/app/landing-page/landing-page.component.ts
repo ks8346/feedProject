@@ -28,10 +28,11 @@ export class LandingPageComponent implements OnInit {
   constructor(public post:PostProposalService,public dialog:MatDialog,private getProposals:GetProposalsService) { }
 
   ngOnInit(): void {
-    this.getProposals.getAllPosts(this.data).subscribe((data)=>{this.feed=data
+    this.getProposals.getAllPosts(this.data).subscribe((data)=>{
+      this.feed=data
       console.log(data)
-    }
-    ,(error)=>console.log(error));
+    },
+    (error)=>console.log(error));
   }
   getAll(){
     this.getProposals.getAllPosts(this.data).subscribe((data)=>this.feed=data,(error)=>console.log(error));
@@ -88,10 +89,10 @@ export class LandingPageComponent implements OnInit {
     let dialogRef = this.dialog.open(CreateProposalComponent, {
       height: '400px',
       width: '600px',
-      data:{name:this.userId,id}
+      data:{name:this.userId,id,team:[]}
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result.post_text} ${result.id} ${result.userId}`);
+      console.log(`Dialog result: ${result.Proposal} `);
       this.post.postProposal(result)
       this.page=0
       this.data.page=this.page.toString()

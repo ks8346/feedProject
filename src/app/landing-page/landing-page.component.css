@@ -24,6 +24,11 @@
     position:fixed;
     z-index: 1000;
 }
+.filter{
+    background-color: white; 
+    position: fixed;
+    width:auto;
+}
 .scrollable{
     widows: 50%;
     height:500px;
