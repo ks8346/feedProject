@@ -22,6 +22,7 @@ export class LandingPageComponent implements OnInit {
   name="Kartik";
   userId=3;
   type="allPost";
+  teamId=1;
   page=0;
   width:number;
   padding:number;
@@ -57,7 +58,7 @@ export class LandingPageComponent implements OnInit {
     this.getProposals.getAllPosts(this.data).subscribe((data)=>this.feed=data,(error)=>console.log(error));
   }
   getTeam(){
-    this.getProposals.getTeamPosts(this.data).subscribe((data)=>this.feed=data,(error)=>console.log(error));
+    this.getProposals.getTeamPosts(this.data,this.teamId).subscribe((data)=>this.feed=data,(error)=>console.log(error));
   }
   getYour(){
     this.getProposals.getYourPosts(this.data,this.userId).subscribe((data)=>this.feed=data,(error)=>console.log(error));
@@ -96,7 +97,7 @@ export class LandingPageComponent implements OnInit {
       if(this.type=="allPost")
         this.getProposals.getAllNextPost(this.data).subscribe((data)=>this.newFeed=data)
       else if(this.type=="teamPost")
-        this.getProposals.getTeamNextPost(this.data).subscribe((data)=>this.newFeed=data)
+        this.getProposals.getTeamNextPost(this.data,this.teamId).subscribe((data)=>this.newFeed=data)
       else if(this.type=="yourPost")
         this.getProposals.getYourNextPost(this.data,this.userId).subscribe((data)=>this.newFeed=data)
       if(this.newFeed.length==0){
