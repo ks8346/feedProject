@@ -24,10 +24,9 @@
         <mat-divider></mat-divider>
         <div>
             <div *ngFor="let post of feed;index as i">
-                <div style="background-color: white;margin-bottom: 2%;border-radius: 5px;">
+                <div style="background-color: white;margin: 2% auto;border-radius: 10px;">
                     <app-feed class="feed" [post]="post" [userId]="userId" [type]="type" (update)="openDialog($event)"></app-feed>
                 </div>
-                <mat-divider></mat-divider>
             </div>
         </div>
     </div> 

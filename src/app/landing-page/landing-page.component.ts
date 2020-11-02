@@ -29,7 +29,7 @@ export class LandingPageComponent implements OnInit {
   padding:number;
   endMessage="";
   startDate=new Date()
-  data=new FeedParams(new Date(this.startDate.setDate(this.startDate.getDate()-30)),new Date(),"0","2")
+  data=new FeedParams(new Date(this.startDate.setDate(this.startDate.getDate()-30)),new Date(),"0","3")
   constructor(public post:PostProposalService,public dialog:MatDialog,private getProposals:GetProposalsService,private teams:TeamsService) { }
 
   ngOnInit(): void {
