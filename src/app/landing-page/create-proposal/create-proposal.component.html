@@ -13,16 +13,17 @@
                 <input type="hidden" formControlName="$key" [(ngModel)]=data.id>
                 <mat-form-field appearance="fill" class="field">
                     <mat-label>Title</mat-label>
-                    <input formControlName="title" matInput placeholder="Title" >
+                    <input formControlName="title" matInput placeholder="Title" minlength="6">
                     <mat-error *ngIf="service.form.controls['title'].errors?.required">This field is Mandatory</mat-error>
                     <mat-error *ngIf="service.form.controls['title'].errors?.minlength">Minimum 5 characters needed</mat-error>
                 </mat-form-field>
                 <br>
                 <mat-form-field class="field" >
                     <mat-label>Proposal</mat-label>
-                    <textarea style="height: 70px;line-height: 16px;" formControlName="Proposal" matInput placeholder="Proposal" > </textarea>
+                    <textarea style="height: 70px;line-height: 16px;" formControlName="Proposal" matInput placeholder="Proposal" maxlength="500" minlength="10" > </textarea>
                     <mat-error *ngIf="service.form.controls['Proposal'].errors?.required">This field is Mandatory</mat-error>
-                    <mat-error *ngIf="service.form.controls['Proposal'].errors?.minlength">Maximum 300 characters</mat-error>
+                    <mat-error *ngIf="service.form.controls['Proposal'].errors?.maxlength">Maximum 500 characters</mat-error>
+                    <mat-error *ngIf="service.form.controls['Proposal'].errors?.minlength">Minimum 10 characters</mat-error>
                 </mat-form-field>
                 <br>
                 <mat-form-field class="field">
@@ -32,7 +33,7 @@
                 </mat-form-field>
             </div>
     <div mat-dialog-action align=end>
-       <button mat-raised-button [mat-dialog-close]="this.service.form.value" color="primary" type="submit" [disabled]= "service.form.invalid " (click)=onSubmit()>submit</button>
+       <button mat-raised-button [mat-dialog-close]="this.service.form.value" color="primary" type="submit" [disabled]= "service.form.invalid || service.form.controls['title'].pristine || service.form.controls['team'].untouched || service.form.controls['Proposal'].pristine" (click)=onSubmit()>submit</button>
        <button mat-raised-button [mat-dialog-close] color="danger" (click)=onClear()>clear</button>
     </div>
 </form>

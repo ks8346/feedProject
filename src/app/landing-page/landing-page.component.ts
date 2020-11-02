@@ -101,11 +101,13 @@ export class LandingPageComponent implements OnInit {
       data:{name:this.userId,id,teams:this._teams}
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result} `);
-      this.post.postProposal(result,this.userId)
-      this.page=0
-      this.data.page=this.page.toString()
-      this.selectApi(this.type)
+      if(result){
+        console.log(`Dialog result: ${result} `);
+        this.post.postProposal(result,this.userId)
+        this.page=0
+        this.data.page=this.page.toString()
+        this.selectApi(this.type)
+      }
     });
   }
   showMenu(){
