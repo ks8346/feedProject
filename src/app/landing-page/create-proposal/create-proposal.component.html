@@ -1,19 +1,38 @@
-<p>create-proposal works!</p>
-<mat-dialog-content>
-    {{data.name}}{{data.id}}
-    <mat-form-field>
-        <mat-label>Favorite food</mat-label>
-        <mat-select>
-            <mat-option value="crackers">
-                crackers
-            </mat-option>
-            <mat-option value="chips">
-                chips
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="{post_text:text,id:data.id,userId:data.name}" cdkFocusInitial>Submit</button>
-</mat-dialog-actions>
+
+<div mat-dialog-title class="container">
+    <mat-toolbar>
+        <span class="fill-remaining-space"></span>
+        <span>Create Proposal</span>
+        <span class="fill-remaining-space"></span>
+    </mat-toolbar>
+    
+</div>
+
+<form [formGroup]="service.form" class="normal">
+            <div mat-dialog-content class="controles">
+                <input type="hidden" formControlName="$key">
+                <mat-form-field appearance="fill" class="field">
+                    <mat-label>Title</mat-label>
+                    <input formControlName="title" matInput placeholder="Title" [(ngModel)]="this.title">
+                    <mat-error *ngIf="service.form.controls['title'].errors?.required">This field is Mandatory</mat-error>
+                    <mat-error *ngIf="service.form.controls['title'].errors?.minlength">Minimum 5 characters needed</mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field class="field">
+                    <mat-label>Proposal</mat-label>
+                    <textarea formControlName="Proposal" matInput placeholder="Proposal" [(ngModel)]="this.Proposal"> </textarea>
+                    <mat-error *ngIf="service.form.controls['Proposal'].errors?.required">This field is Mandatory</mat-error>
+                    <mat-error *ngIf="service.form.controls['Proposal'].errors?.minlength">Maximum 300 characters</mat-error>
+                </mat-form-field>
+                <br>
+                <mat-form-field class="field">
+                    <mat-select formControlName="team" matInput placeholder="Team" [(ngModel)]="this.team">
+                        <mat-option *ngFor="let team of teams" value="{{team.id}}">{{team.value}}</mat-option>  
+                    </mat-select>
+                </mat-form-field>
+            </div>
+    <div mat-dialog-action align=end>
+       <button mat-raised-button [mat-dialog-close]="this.service.form.value" color="primary" type="submit" [disabled]= "service.form.invalid" (click)=onSubmit()>submit</button>
+       <button mat-raised-button [mat-dialog-close] color="danger" (click)=onClear()>clear</button>
+    </div>
+</form>
