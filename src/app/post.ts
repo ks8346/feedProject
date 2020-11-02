@@ -1,9 +1,20 @@
 export class Post {
     constructor(
-        public text : string,
-        public userId: string,
-        public comments:string[],
-        public id:number
+        public creationDate: Date,  
+        public description: string,
+        public id: number,
+        public teams:[],
+        public title: string,
+        public upvotesCount: number,
+        public user: {
+            id: number,
+            name: string,
+            email: string,
+            teams:{
+                id:number,
+                name:string
+            }
+        } 
     )
     {}
 }

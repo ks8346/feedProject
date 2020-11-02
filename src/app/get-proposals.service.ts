@@ -2,20 +2,46 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Feed } from './feed';
-
+import {FeedParams} from './feed-params'
 @Injectable({
   providedIn: 'root'
 })
 export class GetProposalsService {
-  url="/assets/data/feed.json"
-  nextUrl="/assets/data/feed1.json"
+  allUrl="http://localhost:8080/feed/all"
+  allNextUrl="http://localhost:8080/feed/all"
+  teamUrl="http://localhost:8080/feed/all"
+  teamNextUrl="http://localhost:8080/feed/all"
+  yourUrl="http://localhost:8080/feed/all"
+  yourNextUrl="http://localhost:8080/feed/all"
+  
   constructor(private _http:HttpClient) { }
-  getPosts(): Observable<Feed[]>{
-    return this._http.get<Feed[]>(this.url);
+  getAllPosts(data:FeedParams): Observable<Feed[]>{
+    console.log(data)
+    return this._http.post<Feed[]>(this.allUrl,data,{responseType:'json'});
   }
-  getNextPost():Observable<Feed[]>{
+  getAllNextPost(data:FeedParams):Observable<Feed[]>{
     if(true){
-      return this._http.get<Feed[]>(this.nextUrl);
+      return this._http.post<Feed[]>(this.allNextUrl,data);
+    }
+  }
+  getTeamPosts(data:FeedParams): Observable<Feed[]>{
+    console.log(data)
+    return this._http.post<Feed[]>(this.teamUrl,data);
+   
+  }
+  getTeamNextPost(data:FeedParams):Observable<Feed[]>{
+    if(true){
+      return this._http.post<Feed[]>(this.teamNextUrl,data);
+    }
+  }
+  getYourPosts(data:FeedParams): Observable<Feed[]>{
+    console.log(data)
+    return this._http.post<Feed[]>(this.yourUrl,data);
+   
+  }
+  getYourNextPost(data:FeedParams):Observable<Feed[]>{
+    if(true){
+      return this._http.post<Feed[]>(this.yourNextUrl,data);
     }
   }
 

@@ -22,8 +22,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
-
-
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -49,8 +48,10 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatMenuModule,
     MatToolbarModule,
     MatDatepickerModule,
-    MatNativeDateModule
-    
+    MatNativeDateModule,
+   ReactiveFormsModule
+
+
   ],
   providers: [
     ProposalService,
