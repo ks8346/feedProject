@@ -24,6 +24,7 @@ export class LandingPageComponent implements OnInit {
   type="allPost";
   page=0;
   width:number;
+  padding:number;
   endMessage="";
   startDate=new Date()
   data=new FeedParams(new Date(this.startDate.setDate(this.startDate.getDate()-30)),new Date(),"0","10")
@@ -40,7 +41,17 @@ export class LandingPageComponent implements OnInit {
       console.log("teams"+data[0].name)
     }
     );
-    
+    if(window.innerWidth<916){
+      this.menuButton=true
+      this.width=100
+      this.padding=10
+    }
+    else{
+      this.menuButton=false
+      this.menuVisibility=true
+      this.width=24
+      this.padding=2
+    }    
   }
   getAll(){
     this.getProposals.getAllPosts(this.data).subscribe((data)=>this.feed=data,(error)=>console.log(error));
@@ -128,11 +139,13 @@ export class LandingPageComponent implements OnInit {
     if(this.innerWidth<916){
       this.menuButton=true
       this.width=100
+      this.padding=10
     }
     else{
       this.menuButton=false
       this.menuVisibility=true
       this.width=24
+      this.padding=2
     }
   }
 }

@@ -18,7 +18,8 @@
     <div class="search-results col-md-9" infiniteScroll
     [infiniteScrollDistance]="3"
     [infiniteScrollThrottle]="50"
-    (scrolled)="onScroll()">
+    (scrolled)="onScroll()"
+    [style.padding-left.%]="padding">
         <button mat-raised-button class="postButton"  color="primary" (click)="openDialog()"> New Proposal</button>
         <mat-divider></mat-divider>
         <div>
