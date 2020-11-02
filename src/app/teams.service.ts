@@ -6,7 +6,7 @@ import {Teams} from './teams'
   providedIn: 'root'
 })
 export class TeamsService {
-  url=""
+  url="http://localhost:8080/team/all"
   constructor(private http:HttpClient) { }
   getTeams():Observable<Teams[]>{
     return this.http.get<Teams[]>(this.url)

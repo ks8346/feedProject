@@ -26,13 +26,13 @@
                 </mat-form-field>
                 <br>
                 <mat-form-field class="field">
-                    <mat-select formControlName="team" matInput placeholder="Team" >
-                        <mat-option *ngFor="let team of data.teams" value="{{team.id}}">{{team.value}}</mat-option>  
+                    <mat-select formControlName="team" matInput placeholder="Team" multiple>
+                        <mat-option *ngFor="let team of data.teams" value="{{team.id}}">{{team.name}}</mat-option>  
                     </mat-select>
                 </mat-form-field>
             </div>
     <div mat-dialog-action align=end>
-       <button mat-raised-button [mat-dialog-close]="this.service.form.value" color="primary" type="submit" [disabled]= "service.form.invalid" (click)=onSubmit()>submit</button>
+       <button mat-raised-button [mat-dialog-close]="this.service.form.value" color="primary" type="submit" [disabled]= "service.form.invalid " (click)=onSubmit()>submit</button>
        <button mat-raised-button [mat-dialog-close] color="danger" (click)=onClear()>clear</button>
     </div>
 </form>

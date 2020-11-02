@@ -34,7 +34,12 @@ export class LandingPageComponent implements OnInit {
       console.log(data)
     },
     (error)=>console.log(error));
-    this.teams.getTeams().subscribe((data)=>this._teams=data);
+    this.teams.getTeams().subscribe((data)=>{
+      this._teams=data
+      console.log("teams"+data[0].name)
+    }
+    );
+    
   }
   getAll(){
     this.getProposals.getAllPosts(this.data).subscribe((data)=>this.feed=data,(error)=>console.log(error));
@@ -96,7 +101,7 @@ export class LandingPageComponent implements OnInit {
       data:{name:this.userId,id,teams:this._teams}
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result.Proposal} `);
+      console.log(`Dialog result: ${result} `);
       this.post.postProposal(result,this.userId)
       this.page=0
       this.data.page=this.page.toString()
