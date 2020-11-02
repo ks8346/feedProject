@@ -10,7 +10,7 @@ import {Comment} from '../comment'
 export class FeedComponent implements OnInit {
   @Input() post:Post;
   public new_comment:Comment;
-  public singleComment=new Comment("","");
+  public singleComment=new Comment(null,"","");
   public canUpdate=false;
   public numberLikes:number;
   public comments:Comment[]=[];
@@ -23,7 +23,7 @@ export class FeedComponent implements OnInit {
   public hasLiked=false;
   constructor(public proposalWork:ProposalService) { }
   ngOnInit(): void {
-    if(this.type=="Your Posts"){
+    if(this.type=="yourPost"){
       this.canUpdate=true
     }
     // this.comments=this.post.comments;

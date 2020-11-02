@@ -11,8 +11,8 @@ export class GetProposalsService {
   allNextUrl="http://localhost:8080/feed/all"
   teamUrl="http://localhost:8080/feed/all"
   teamNextUrl="http://localhost:8080/feed/all"
-  yourUrl="http://localhost:8080/feed/all"
-  yourNextUrl="http://localhost:8080/feed/all"
+  yourUrl="http://localhost:8080/feed/created"
+  yourNextUrl="http://localhost:8080/feed/created"
   
   constructor(private _http:HttpClient) { }
   getAllPosts(data:FeedParams): Observable<Feed[]>{

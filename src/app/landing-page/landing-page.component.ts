@@ -20,7 +20,7 @@ export class LandingPageComponent implements OnInit {
   feed=[];
   newFeed=[];
   name="Kartik";
-  userId="ks8346";
+  userId=3;
   type="allPost";
   page=0;
   endMessage="";
@@ -67,6 +67,8 @@ export class LandingPageComponent implements OnInit {
       console.log(data)
       this.type=data;
     }
+    this.page=0
+    this.data.page=this.page.toString()
     this.selectApi(this.type)
   }
   onScroll(){
@@ -95,7 +97,7 @@ export class LandingPageComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result.Proposal} `);
-      this.post.postProposal(result)
+      this.post.postProposal(result,this.userId)
       this.page=0
       this.data.page=this.page.toString()
       this.selectApi(this.type)
