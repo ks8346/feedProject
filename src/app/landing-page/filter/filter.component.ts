@@ -42,7 +42,10 @@ export class FilterComponent implements OnInit {
     if(this.sDate>this.eDate)
     this.message = "Start Date can not be Greater then End Date"
     else
+    {
      this.sendData(this.data);
+     this.message=""
+    }
 
 
    
