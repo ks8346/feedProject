@@ -27,7 +27,7 @@
                 <br>
                 <mat-form-field class="field">
                     <mat-select formControlName="team" matInput placeholder="Team" [(ngModel)]="this.team">
-                        <mat-option *ngFor="let team of teams" value="{{team.id}}">{{team.value}}</mat-option>  
+                        <mat-option *ngFor="let team of data.teams" value="{{team.id}}">{{team.value}}</mat-option>  
                     </mat-select>
                 </mat-form-field>
             </div>
