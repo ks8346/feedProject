@@ -6,6 +6,7 @@ import {PostProposalService} from 'src/app/post-proposal.service'
 import { FeedParams } from '../feed-params';
 import {TeamsService} from '../teams.service'
 import {Teams} from '../teams'
+import { Proposal } from '../proposal';
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
@@ -20,27 +21,36 @@ export class LandingPageComponent implements OnInit {
   feed=[];
   newFeed=[];
   name="Kartik";
-  userId=3;
-  type="allPost";
-  teamId=1;
+  userId="3";
+  type="teamPost";
+  teamId="2";
   page=0;
   width:number;
   padding:number;
   endMessage="";
   startDate=new Date()
-  data=new FeedParams(new Date(this.startDate.setDate(this.startDate.getDate()-30)),new Date(),"0","10")
+  data=new FeedParams(new Date(this.startDate.setDate(this.startDate.getDate()-30)),new Date(),"0","2")
   constructor(public post:PostProposalService,public dialog:MatDialog,private getProposals:GetProposalsService,private teams:TeamsService) { }
 
   ngOnInit(): void {
-    this.getProposals.getAllPosts(this.data).subscribe((data)=>{
-      this.feed=data
-      console.log(data)
-    },
-    (error)=>console.log(error));
-    this.teams.getTeams().subscribe((data)=>{
-      this._teams=data
-      console.log("teams"+data[0].name)
+    if(this.type==="allPost"){
+      this.getProposals.getAllPosts(this.data).subscribe((data)=>{
+        this.feed=data
+        console.log(data)
+      },
+      (error)=>console.log(error));
     }
+    else if(this.type==="teamPost"){
+      this.getProposals.getTeamPosts(this.data,this.teamId).subscribe((data)=>{
+        this.feed=data
+        console.log(data)
+      },
+      (error)=>console.log(error));
+    }
+      this.teams.getTeams().subscribe((data)=>{
+        this._teams=data
+        console.log("teams"+data[0].name)
+      }
     );
     if(window.innerWidth<916){
       this.menuButton=true
@@ -50,7 +60,7 @@ export class LandingPageComponent implements OnInit {
     else{
       this.menuButton=false
       this.menuVisibility=true
-      this.width=24
+      this.width=23.5
       this.padding=2
     }    
   }
@@ -73,7 +83,7 @@ export class LandingPageComponent implements OnInit {
     else if(data==="yourPost"){
       this.getYour()
     }
-    this.page=-1
+    this.page=0
   }
   onFilter(data){
     if(Array.isArray(data)){
@@ -82,8 +92,8 @@ export class LandingPageComponent implements OnInit {
       this.data.endDate=data[1]
     }
     else{
-      console.log(data)
       this.type=data;
+      console.log(this.type)
     }
     this.page=0
     this.data.page=this.page.toString()
@@ -94,12 +104,18 @@ export class LandingPageComponent implements OnInit {
       this.page++
       this.data.page=this.page.toString()
       console.log(this.data)
-      if(this.type=="allPost")
+      if(this.type.includes("allPost")){
         this.getProposals.getAllNextPost(this.data).subscribe((data)=>this.newFeed=data)
-      else if(this.type=="teamPost")
+        this.getProposals.getAllNextPost(this.data).subscribe((data)=>this.newFeed=data)
+      }
+      else if(this.type.includes("teamPost")){
         this.getProposals.getTeamNextPost(this.data,this.teamId).subscribe((data)=>this.newFeed=data)
-      else if(this.type=="yourPost")
+        this.getProposals.getTeamNextPost(this.data,this.teamId).subscribe((data)=>this.newFeed=data)
+      }
+      else if(this.type.includes("yourPost")){
         this.getProposals.getYourNextPost(this.data,this.userId).subscribe((data)=>this.newFeed=data)
+        this.getProposals.getYourNextPost(this.data,this.userId).subscribe((data)=>this.newFeed=data)
+      }      
       if(this.newFeed.length==0){
         this.endMessage="No More Posts"
       }
@@ -115,7 +131,7 @@ export class LandingPageComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        console.log(`Dialog result: ${result} `);
+        console.log(`Dialog result: ${result.team[0]} `);
         this.post.postProposal(result,this.userId).subscribe(
           (data)=>this.selectApi(this.type),
           (error)=>console.log("error")
@@ -145,7 +161,7 @@ export class LandingPageComponent implements OnInit {
     else{
       this.menuButton=false
       this.menuVisibility=true
-      this.width=24
+      this.width=23.5
       this.padding=2
     }
   }

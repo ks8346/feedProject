@@ -9,6 +9,7 @@ export class PostProposalService {
   constructor(private http:HttpClient) { }
   postProposal(data:Proposal,userId){
     data.userId=userId
+    console.log(data)
     return this.http.post(this.url,data)
   }
 }

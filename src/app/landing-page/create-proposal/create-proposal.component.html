@@ -27,8 +27,8 @@
                 </mat-form-field>
                 <br>
                 <mat-form-field class="field">
-                    <mat-select formControlName="team" matInput placeholder="Team" multiple>
-                        <mat-option *ngFor="let team of data.teams" value="{{team.id}}">{{team.name}}</mat-option>  
+                    <mat-select formControlName="team" matInput placeholder="Team" multiple [(value)]="sentTeam" >
+                        <mat-option *ngFor="let team of data.teams" value="{'id':{{team.id}},'name':{{team.name}}}"  >{{team.name}}</mat-option>  
                     </mat-select>
                 </mat-form-field>
             </div>

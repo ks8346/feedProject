@@ -3,7 +3,7 @@
   <mat-toolbar class="tools">
     <span> Filter Your Feed</span>
   </mat-toolbar>
-
+  <br>
   <mat-form-field class="selectp">
     <mat-label>Select posts</mat-label>
     <mat-select name = "selection"   [(value)]="typePost" role="mat-option" (ngModelChange)='selectionChanged()' #selection [(ngModel)] = "typePost">

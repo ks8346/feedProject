@@ -12,7 +12,7 @@ export class CreateProposalComponent implements OnInit {
   // teams=[]
   // title:string
   // Proposal:string
-  // team:{}
+  sentTeam:[]
   userId:string
   id:number
   values:TestServiceService;
