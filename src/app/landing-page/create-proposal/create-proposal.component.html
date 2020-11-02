@@ -10,24 +10,24 @@
 
 <form [formGroup]="service.form" class="normal">
             <div mat-dialog-content class="controles">
-                <input type="hidden" formControlName="$key">
+                <input type="hidden" formControlName="$key" [(ngModel)]=data.id>
                 <mat-form-field appearance="fill" class="field">
                     <mat-label>Title</mat-label>
-                    <input formControlName="title" matInput placeholder="Title" [(ngModel)]="this.title">
+                    <input formControlName="title" matInput placeholder="Title" >
                     <mat-error *ngIf="service.form.controls['title'].errors?.required">This field is Mandatory</mat-error>
                     <mat-error *ngIf="service.form.controls['title'].errors?.minlength">Minimum 5 characters needed</mat-error>
                 </mat-form-field>
                 <br>
-                <mat-form-field class="field">
+                <mat-form-field class="field" >
                     <mat-label>Proposal</mat-label>
-                    <textarea formControlName="Proposal" matInput placeholder="Proposal" [(ngModel)]="this.Proposal"> </textarea>
+                    <textarea style="height: 70px;line-height: 16px;" formControlName="Proposal" matInput placeholder="Proposal" > </textarea>
                     <mat-error *ngIf="service.form.controls['Proposal'].errors?.required">This field is Mandatory</mat-error>
                     <mat-error *ngIf="service.form.controls['Proposal'].errors?.minlength">Maximum 300 characters</mat-error>
                 </mat-form-field>
                 <br>
                 <mat-form-field class="field">
-                    <mat-select formControlName="team" matInput placeholder="Team" [(ngModel)]="this.team">
-                        <mat-option *ngFor="let team of teams" value="{{team.id}}">{{team.value}}</mat-option>  
+                    <mat-select formControlName="team" matInput placeholder="Team" >
+                        <mat-option *ngFor="let team of data.teams" value="{{team.id}}">{{team.value}}</mat-option>  
                     </mat-select>
                 </mat-form-field>
             </div>

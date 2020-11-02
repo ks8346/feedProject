@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {Proposal} from './proposal'
+import {Observable} from 'rxjs';
+import {Teams} from './teams'
 @Injectable({
   providedIn: 'root'
 })
-export class PostProposalService {
-  private url=""
+export class TeamsService {
+  url=""
   constructor(private http:HttpClient) { }
-  postProposal(data,userId){
-    data.userId=userId
-    this.http.post(this.url,data)
+  getTeams():Observable<Teams[]>{
+    return this.http.get<Teams[]>(this.url)
   }
 }

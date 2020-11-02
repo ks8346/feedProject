@@ -11,8 +11,8 @@ export class GetProposalsService {
   allNextUrl="http://localhost:8080/feed/all"
   teamUrl="http://localhost:8080/feed/all"
   teamNextUrl="http://localhost:8080/feed/all"
-  yourUrl="http://localhost:8080/feed/all"
-  yourNextUrl="http://localhost:8080/feed/all"
+  yourUrl="http://localhost:8080/feed/created"
+  yourNextUrl="http://localhost:8080/feed/created"
   
   constructor(private _http:HttpClient) { }
   getAllPosts(data:FeedParams): Observable<Feed[]>{
@@ -20,9 +20,7 @@ export class GetProposalsService {
     return this._http.post<Feed[]>(this.allUrl,data,{responseType:'json'});
   }
   getAllNextPost(data:FeedParams):Observable<Feed[]>{
-    if(true){
-      return this._http.post<Feed[]>(this.allNextUrl,data);
-    }
+    return this._http.post<Feed[]>(this.allNextUrl,data);
   }
   getTeamPosts(data:FeedParams): Observable<Feed[]>{
     console.log(data)
@@ -30,19 +28,17 @@ export class GetProposalsService {
    
   }
   getTeamNextPost(data:FeedParams):Observable<Feed[]>{
-    if(true){
-      return this._http.post<Feed[]>(this.teamNextUrl,data);
-    }
+    return this._http.post<Feed[]>(this.teamNextUrl,data);
   }
-  getYourPosts(data:FeedParams): Observable<Feed[]>{
+  getYourPosts(data,userId): Observable<Feed[]>{
+    data.userId=userId
     console.log(data)
     return this._http.post<Feed[]>(this.yourUrl,data);
    
   }
-  getYourNextPost(data:FeedParams):Observable<Feed[]>{
-    if(true){
-      return this._http.post<Feed[]>(this.yourNextUrl,data);
-    }
+  getYourNextPost(data,userId):Observable<Feed[]>{
+    data.userd=userId
+    return this._http.post<Feed[]>(this.yourNextUrl,data);
   }
 
 }

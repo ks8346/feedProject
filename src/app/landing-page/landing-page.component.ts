@@ -4,8 +4,8 @@ import {MatDialog} from '@angular/material/dialog';
 import { CreateProposalComponent } from './create-proposal/create-proposal.component';
 import {PostProposalService} from 'src/app/post-proposal.service'
 import { FeedParams } from '../feed-params';
-
-  
+import {TeamsService} from '../teams.service'
+import {Teams} from '../teams'
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
@@ -16,16 +16,17 @@ export class LandingPageComponent implements OnInit {
   menuVisibility=true;
   menuButton=false;
   innerWidth;
+  _teams:Teams[];
   feed=[];
   newFeed=[];
   name="Kartik";
-  userId="ks8346";
+  userId=3;
   type="allPost";
   page=0;
   endMessage="";
   startDate=new Date()
   data=new FeedParams(new Date(this.startDate.setDate(this.startDate.getDate()-30)),new Date(),"0","10")
-  constructor(public post:PostProposalService,public dialog:MatDialog,private getProposals:GetProposalsService) { }
+  constructor(public post:PostProposalService,public dialog:MatDialog,private getProposals:GetProposalsService,private teams:TeamsService) { }
 
   ngOnInit(): void {
     this.getProposals.getAllPosts(this.data).subscribe((data)=>{
@@ -33,6 +34,7 @@ export class LandingPageComponent implements OnInit {
       console.log(data)
     },
     (error)=>console.log(error));
+    this.teams.getTeams().subscribe((data)=>this._teams=data);
   }
   getAll(){
     this.getProposals.getAllPosts(this.data).subscribe((data)=>this.feed=data,(error)=>console.log(error));
@@ -41,7 +43,7 @@ export class LandingPageComponent implements OnInit {
     this.getProposals.getTeamPosts(this.data).subscribe((data)=>this.feed=data,(error)=>console.log(error));
   }
   getYour(){
-    this.getProposals.getYourPosts(this.data).subscribe((data)=>this.feed=data,(error)=>console.log(error));
+    this.getProposals.getYourPosts(this.data,this.userId).subscribe((data)=>this.feed=data,(error)=>console.log(error));
   }
   selectApi(data){
     if(data==="allPost"){
@@ -65,6 +67,8 @@ export class LandingPageComponent implements OnInit {
       console.log(data)
       this.type=data;
     }
+    this.page=0
+    this.data.page=this.page.toString()
     this.selectApi(this.type)
   }
   onScroll(){
@@ -75,9 +79,9 @@ export class LandingPageComponent implements OnInit {
       if(this.type=="allPost")
         this.getProposals.getAllNextPost(this.data).subscribe((data)=>this.newFeed=data)
       else if(this.type=="teamPost")
-        this.getProposals.getAllNextPost(this.data).subscribe((data)=>this.newFeed=data)
+        this.getProposals.getTeamNextPost(this.data).subscribe((data)=>this.newFeed=data)
       else if(this.type=="yourPost")
-        this.getProposals.getAllNextPost(this.data).subscribe((data)=>this.newFeed=data)
+        this.getProposals.getYourNextPost(this.data,this.userId).subscribe((data)=>this.newFeed=data)
       if(this.newFeed.length==0){
         this.endMessage="No More Posts"
       }
@@ -89,11 +93,11 @@ export class LandingPageComponent implements OnInit {
     let dialogRef = this.dialog.open(CreateProposalComponent, {
       height: '400px',
       width: '600px',
-      data:{name:this.userId,id,team:[]}
+      data:{name:this.userId,id,teams:this._teams}
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result.Proposal} `);
-      this.post.postProposal(result)
+      this.post.postProposal(result,this.userId)
       this.page=0
       this.data.page=this.page.toString()
       this.selectApi(this.type)

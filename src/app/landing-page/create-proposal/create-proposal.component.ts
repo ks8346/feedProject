@@ -9,15 +9,15 @@ import { TestServiceService } from '../test-service.service';
 })
 export class CreateProposalComponent implements OnInit {
   constructor(public dialog:MatDialog,public service:TestServiceService,@Inject(MAT_DIALOG_DATA) public data){}
-  teams=[]
-  title:string
-  Proposal:string
-  team:{}
+  // teams=[]
+  // title:string
+  // Proposal:string
+  // team:{}
   userId:string
   id:number
   values:TestServiceService;
   ngOnInit(){
-    this.teams=this.data.team
+    // this.teams=this.data.teams
     this.userId=this.data.userId
     this.id=this.data.id
   }

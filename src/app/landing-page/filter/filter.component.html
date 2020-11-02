@@ -1,72 +1,68 @@
 
 
+  <mat-toolbar class="tools">
+    <span> Filter Your Feed</span>
+  </mat-toolbar>
+
+  <mat-form-field class="selectp">
+    <mat-label>Select posts</mat-label>
+    <mat-select name = "selection"   [(value)]="typePost" role="mat-option" (ngModelChange)='selectionChanged()' #selection [(ngModel)] = "typePost">
+        <mat-option value="yourPost">
+            Your Post
+        </mat-option>
+        <mat-option value="teamPost">
+            Team Post
+        </mat-option>
+        <mat-option value="allPost">
+          All Post
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
 
-            
+  <hr>
+  <mat-toolbar class="tools">
+    <span>Custom Input Filter</span>
+  </mat-toolbar>
+      <br>
+  <span class="textMessage">{{message}}</span>
+        <br>
+<mat-form-field appearance="fill" class="selectp">
+  <mat-label>Select Start Date</mat-label>
+  <input matInput [matDatepicker]="startDate" [(ngModel)]="sDate" >
+  <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+  <mat-datepicker #startDate></mat-datepicker>
+</mat-form-field>
 
-              <mat-toolbar class="tools">
-                <span> Filter Your Feed</span>
-              </mat-toolbar>
+  <mat-form-field appearance="fill" class="selectp">
+    <mat-label>Select End Date</mat-label>
+    <input matInput [matDatepicker]="endDate" [(ngModel)]="eDate">
+    <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+    <mat-datepicker #endDate></mat-datepicker>
+  </mat-form-field>
+  
 
-              <mat-form-field class="selectp">
-                <mat-label>Select posts</mat-label>
-                <mat-select name = "selection"   [(value)]="typePost" role="mat-option" (ngModelChange)='selectionChanged()' #selection [(ngModel)] = "typePost">
-                    <mat-option value="yourPost">
-                       Your Post
-                    </mat-option>
-                    <mat-option value="teamPost">
-                        Team Post
-                    </mat-option>
-                    <mat-option value="allPost">
-                      All Post
-                  </mat-option>
-                </mat-select>
-            </mat-form-field>
-            
 
-                  <hr>
-                  <mat-toolbar class="tools">
-                    <span>Custom Input Filter</span>
-                  </mat-toolbar>
-                      <br>
-                  <span class="textMessage">{{message}}</span>
-                       <br>
-                <mat-form-field appearance="fill" class="selectp">
-                  <mat-label>Select Start Date</mat-label>
-                  <input matInput [matDatepicker]="startDate" [(ngModel)]="sDate" >
-                  <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
-                  <mat-datepicker #startDate></mat-datepicker>
-                </mat-form-field>
-        
-                  <mat-form-field appearance="fill" class="selectp">
-                    <mat-label>Select End Date</mat-label>
-                    <input matInput [matDatepicker]="endDate" [(ngModel)]="eDate">
-                    <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
-                    <mat-datepicker #endDate></mat-datepicker>
-                  </mat-form-field>
-                  
+  <button mat-raised-button color="primary" class="bton" (click)="processFilter()"  >Filter Feed</button>
+<br><br>
+
+  
+              
+
                 
 
-                  <button mat-raised-button color="primary" class="bton" (click)="processFilter()"  >Filter Feed</button>
-                <br><br>
-
-      
-                 
-
-                   
-
-  
- 
-    
-   
-  
 
 
- 
-  
 
- 
- 
+
+
+
+
+
+
+
+
+
 
 
 
