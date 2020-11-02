@@ -21,7 +21,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 import {ReactiveFormsModule} from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +48,10 @@ import {ReactiveFormsModule} from '@angular/forms';
     MatMenuModule,
     MatToolbarModule,
     MatDatepickerModule,
-    ReactiveFormsModule
+    MatNativeDateModule,
+   ReactiveFormsModule
+
+
   ],
   providers: [
     ProposalService,

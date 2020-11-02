@@ -1,4 +1,31 @@
-.view{
-    align-items: center;
-    width:100%;
+
+.selectp{
+width: 100%;
+text-align: justify;
+padding-left: 5%;
+
 }
+
+.bton
+{
+    width: 95%;
+    text-align: center;
+   margin-left: 5%;
+    align-self: center;
+
+    
+}
+
+.textMessage
+{
+    color: crimson;
+    text-align: center;
+}
+
+.tools{
+    width: 95%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+   
+
