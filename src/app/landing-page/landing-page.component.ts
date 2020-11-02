@@ -23,6 +23,7 @@ export class LandingPageComponent implements OnInit {
   userId=3;
   type="allPost";
   page=0;
+  width:number;
   endMessage="";
   startDate=new Date()
   data=new FeedParams(new Date(this.startDate.setDate(this.startDate.getDate()-30)),new Date(),"0","10")
@@ -103,10 +104,13 @@ export class LandingPageComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if(result){
         console.log(`Dialog result: ${result} `);
-        this.post.postProposal(result,this.userId)
+        this.post.postProposal(result,this.userId).subscribe(
+          (data)=>this.selectApi(this.type),
+          (error)=>console.log("error")
+        )
         this.page=0
         this.data.page=this.page.toString()
-        this.selectApi(this.type)
+        
       }
     });
   }
@@ -123,10 +127,12 @@ export class LandingPageComponent implements OnInit {
     this.innerWidth = event.target.innerWidth;
     if(this.innerWidth<916){
       this.menuButton=true
+      this.width=100
     }
     else{
       this.menuButton=false
       this.menuVisibility=true
+      this.width=24
     }
   }
 }
