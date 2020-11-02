@@ -50,7 +50,7 @@ export class FilterComponent implements OnInit {
 
   selectionChanged()
   { 
-    console.log(this.typePost)
+    
      this.sendData(this.typePost);
   }
 
