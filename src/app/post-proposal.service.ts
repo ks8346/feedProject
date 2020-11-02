@@ -7,7 +7,7 @@ import {Proposal} from './proposal'
 export class PostProposalService {
   private url=""
   constructor(private http:HttpClient) { }
-  postProposal(data,userId){
+  postProposal(data:Proposal,userId){
     data.userId=userId
     return this.http.post(this.url,data)
   }

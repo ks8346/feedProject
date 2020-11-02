@@ -34,6 +34,6 @@
             </div>
     <div mat-dialog-action align=end>
        <button mat-raised-button [mat-dialog-close]="this.service.form.value" color="primary" type="submit" [disabled]= "service.form.invalid || service.form.controls['title'].pristine || service.form.controls['team'].untouched || service.form.controls['Proposal'].pristine" (click)=onSubmit()>submit</button>
-       <button mat-raised-button [mat-dialog-close] color="danger" (click)=onClear()>clear</button>
+       <button mat-raised-button [mat-dialog-close] color="danger" (click)=onClear()>close</button>
     </div>
 </form>
