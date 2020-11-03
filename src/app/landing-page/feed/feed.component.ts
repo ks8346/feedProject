@@ -73,12 +73,7 @@ export class FeedComponent implements OnInit {
       }
       
     );
-    // this.comments.push({'id':this.post.id,'comment':this.new_comment,'creationDate':new Date(),'user':{
-    //   'id':2,'name':"Kartik"}})
-    // this.new_comment=""
     console.log(id+this.userId+this.new_comment)
-    // this.comments.push(this.new_comment)
-    // this.new_comment.text=""
   }
   postLike(id:number){
     if(this.hasLiked){
