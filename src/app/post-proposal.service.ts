@@ -5,10 +5,16 @@ import {Proposal} from './proposal'
   providedIn: 'root'
 })
 export class PostProposalService {
-  private url=""
+  public sentTeams:{}[]
+  private url="http://localhost:8080/proposal/add"
   constructor(private http:HttpClient) { }
-  postProposal(data,userId){
+  postProposal(data,userId,teams){
+    if(!data.key){
+      data.key="null"
+    }
     data.userId=userId
-    this.http.post(this.url,data)
+    data.teams=[JSON.parse(teams)]
+    console.log(data)
+    return this.http.post(this.url,data)
   }
 }

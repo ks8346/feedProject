@@ -8,10 +8,10 @@ export class TestServiceService {
 
   constructor() { }
   form: FormGroup = new FormGroup({
-    $key: new FormControl(null),
+    key: new FormControl(null),
     title: new FormControl(' ',[Validators.required]),
-    Proposal: new FormControl(' ',[Validators.required,Validators.maxLength(300)]),
-    team: new FormControl(0),
+    description: new FormControl(' ',[Validators.required,Validators.maxLength(300)]),
+    teams: new FormControl(0),
   });
   
   initialiseFormGroup(){

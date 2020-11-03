@@ -15,7 +15,7 @@ export class FilterComponent implements OnInit {
   public newEdate
   public eDate
   public data:Date[]
-  public typePost;
+  public typePost="teamPost";
   
 
  

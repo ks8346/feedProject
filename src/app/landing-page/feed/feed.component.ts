@@ -9,8 +9,9 @@ import {Comment} from '../comment'
 })
 export class FeedComponent implements OnInit {
   @Input() post:Post;
-  public new_comment:Comment;
-  public singleComment=new Comment(null,"","");
+  public new_comment:string;
+  public singleComment:string;
+  public singleCommentUser:string;
   public canUpdate=false;
   public numberLikes:number;
   public comments:Comment[]=[];
@@ -18,7 +19,7 @@ export class FeedComponent implements OnInit {
   public commentVisibility=false;
   public commentsMessage="Comments";
   @Output() update=new EventEmitter;
-  @Input() userId:string;
+  @Input() userId:number;
   @Input() type:string;
   public hasLiked=false;
   constructor(public proposalWork:ProposalService) { }
@@ -26,45 +27,56 @@ export class FeedComponent implements OnInit {
     if(this.type=="yourPost"){
       this.canUpdate=true
     }
-    // this.comments=this.post.comments;
     this.numberLikes=this.post.upvotesCount;
-    this.proposalWork.getComment(this.post.id).subscribe((data)=>this.comments.concat(data))
-    if(this.comments.length<=1){
-      this.commentVisibility=true
-      if(this.comments.length==0)
-        this.commentsMessage="No comments on this post yet"
-      else{
-        this.singleComment=this.comments[0]
+    this.proposalWork.getComment(this.post.id).subscribe((data)=>{
+        this.comments=this.comments.concat(data)
+        console.log(this.comments)
+        if(data.length<=1){
+          this.commentVisibility=true
+          if(data.length==0){
+            this.commentsMessage="No comments on this post yet"
+          }
+          else{
+            this.singleComment=data[0].comment
+            this.singleCommentUser=data[0].user.name
+            this.commentsMessage="Comments"
+          }
+        }
+        else{
+          this.singleComment=data[0].comment
+          this.singleCommentUser=data[0].user.name
+          this.commentsMessage="Comments"
+        }
       }
-    }
-    else{
-      this.singleComment=this.comments[0]
-    }
+    )
+    this.proposalWork.getLike(this.post.id,this.userId).subscribe((data)=>this.hasLiked=data)
+    
+    
   }
   postComment(id:number){
     this.proposalWork.postComment(id,this.new_comment,this.userId)
     .subscribe(
       (data)=>{
-        this.comments.push(this.new_comment)
-        this.new_comment.text=""
-      },error=>console.error("error")
+        this.comments.push({'id':this.post.id,'comment':this.new_comment,'creationDate':new Date(),'user':{
+          'id':2,'name':"Kartik Sachdeva"}}) 
+        this.new_comment=""
+      },error=>console.error(error)
+      
     );
+    this.comments.push({'id':this.post.id,'comment':this.new_comment,'creationDate':new Date(),'user':{
+      'id':2,'name':"Kartik"}})
+    this.new_comment=""
     console.log(id+this.userId+this.new_comment)
     // this.comments.push(this.new_comment)
     // this.new_comment.text=""
   }
   postLike(id:number){
-    this.proposalWork.postLike(id,this.userId).subscribe(
-      (data)=>{
-        if(this.hasLiked){
-        this.hasLiked=false
-        this.numberLikes-=1;
-      }
-      else{
-        this.hasLiked=true
-        this.numberLikes+=1;
-      }
-    },error=>console.error("error"));
+    if(this.hasLiked){
+      this.proposalWork.postDislike(id,this.userId)
+    }
+    else{
+      this.proposalWork.postLike(id,this.userId)
+    }
     console.log("liked "+id+this.userId)
     if(this.hasLiked){
       this.hasLiked=false

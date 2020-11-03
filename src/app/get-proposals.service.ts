@@ -9,8 +9,8 @@ import {FeedParams} from './feed-params'
 export class GetProposalsService {
   allUrl="http://localhost:8080/feed/all"
   allNextUrl="http://localhost:8080/feed/all"
-  teamUrl="http://localhost:8080/feed/all"
-  teamNextUrl="http://localhost:8080/feed/all"
+  teamUrl="http://localhost:8080/feed/team"
+  teamNextUrl="http://localhost:8080/feed/team"
   yourUrl="http://localhost:8080/feed/created"
   yourNextUrl="http://localhost:8080/feed/created"
   
@@ -22,22 +22,24 @@ export class GetProposalsService {
   getAllNextPost(data:FeedParams):Observable<Feed[]>{
     return this._http.post<Feed[]>(this.allNextUrl,data);
   }
-  getTeamPosts(data:FeedParams): Observable<Feed[]>{
+  getTeamPosts(data:FeedParams,teamId): Observable<Feed[]>{
+    data.teamId=teamId
     console.log(data)
     return this._http.post<Feed[]>(this.teamUrl,data);
    
   }
-  getTeamNextPost(data:FeedParams):Observable<Feed[]>{
+  getTeamNextPost(data:FeedParams,teamId):Observable<Feed[]>{
+    data.teamId=teamId
     return this._http.post<Feed[]>(this.teamNextUrl,data);
   }
-  getYourPosts(data,userId): Observable<Feed[]>{
+  getYourPosts(data:FeedParams,userId): Observable<Feed[]>{
     data.userId=userId
     console.log(data)
     return this._http.post<Feed[]>(this.yourUrl,data);
    
   }
-  getYourNextPost(data,userId):Observable<Feed[]>{
-    data.userd=userId
+  getYourNextPost(data:FeedParams,userId):Observable<Feed[]>{
+    data.userId=userId
     return this._http.post<Feed[]>(this.yourNextUrl,data);
   }
 

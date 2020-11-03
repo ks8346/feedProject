@@ -6,16 +6,25 @@ import {Comment} from './comment'
   providedIn: 'root'
 })
 export class ProposalService {
-  postUrl=""
-  getUrl=""
+  postCommentUrl="http://localhost:8080/comment/add"
+  getCommentUrl="http://localhost:8080/comment/all"
+  postLikeUrl="http://localhost:8080/upvotes/like"
+  postDislikeUrl="http://localhost:8080/upvotes/dislike"
+  getLikeUrl="http://localhost:8080/upvotes/hasupvoted"
   constructor(private http:HttpClient) { }
-  postComment(id:number,new_comment:Comment,userId:string):Observable<any>{
-    return this.http.post(this.postUrl,{id,new_comment,userId})
+  postComment(id:number,new_comment:string,userId:number):Observable<any>{
+    return this.http.post(this.postCommentUrl,{'id':id,'text':new_comment,'userId':userId})
   }
-  postLike(id:number,userId:string):Observable<any>{
-    return this.http.post(this.postUrl,{id:id,userId:userId})
+  postLike(id:number,userId:number):Observable<any>{
+    return this.http.post(this.postLikeUrl,{'id':id,'userId':userId})
+  }
+  postDislike(id:number,userId:number):Observable<any>{
+    return this.http.post(this.postDislikeUrl,{'id':id,'userId':userId})
+  }
+  getLike(id:number,userId:number):Observable<any>{
+    return this.http.post(this.postLikeUrl,{'id':id,'userId':userId})
   }
   getComment(id:number):Observable<Comment[]>{
-    return this.http.get<Comment[]>(this.getUrl)
+    return this.http.post<Comment[]>(this.getCommentUrl,{'id':id})
   }
 }
