@@ -12,6 +12,7 @@ import { Post } from 'src/app/post';
 export class FilterComponent implements OnInit {
   @Input()
   public sDate
+  public newEdate
   public eDate
   public data:Date[]
   public typePost;
@@ -38,7 +39,9 @@ export class FilterComponent implements OnInit {
     //  eeDate
 
     //  yourDate.setDate(yourDate.getDate() + 1);
-    this.data = [this.sDate,this.eDate];
+    this.newEdate = this.eDate;
+    this.newEdate = this.newEdate.setDate(this.newEdate.getDate()+1);
+    this.data = [this.sDate,this.newEdate];
     
     if(this.sDate==null || this.eDate==null)
     this.message = "Please select both Start date and End date !!"
