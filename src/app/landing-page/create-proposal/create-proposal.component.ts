@@ -9,15 +9,12 @@ import { TestServiceService } from '../test-service.service';
 })
 export class CreateProposalComponent implements OnInit {
   constructor(public dialog:MatDialog,public service:TestServiceService,@Inject(MAT_DIALOG_DATA) public data){}
-  // teams=[]
-  // title:string
-  // Proposal:string
-  sentTeam:[]
+  sentTeam=[]
+  Teams:{}[]=[]
   userId:string
-  id:number
+  id="null"
   values:TestServiceService;
   ngOnInit(){
-    // this.teams=this.data.teams
     this.userId=this.data.userId
     this.id=this.data.id
   }
@@ -28,7 +25,10 @@ export class CreateProposalComponent implements OnInit {
   onSubmit(){
     console.log(this.service.form.value);
     this.values=this.service.form.value
-    // console.log({id:this.data.id,title:this.service.form.controls['title'],text:this.service.form.controls['Proposal'],team:this.service.form.controls['team']})
+    this.sentTeam=this.service.form.controls["teams"].value
+    
+    // this.Teams=JSON.parse(this.service.form.controls["teams"].value[0])
+    
+    return {"title":this.service.form.controls["title"].value,"description":this.service.form.controls["description"].value,"teams":this.sentTeam}
   }
-
 }

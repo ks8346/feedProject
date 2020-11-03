@@ -21,9 +21,9 @@ export class LandingPageComponent implements OnInit {
   feed=[];
   newFeed=[];
   name="Kartik";
-  userId="3";
+  userId=3;
   type="teamPost";
-  teamId="2";
+  teamId=1;
   page=0;
   width:number;
   padding:number;
@@ -121,6 +121,7 @@ export class LandingPageComponent implements OnInit {
       }
       this.feed=this.feed.concat(this.newFeed)
       console.log(this.newFeed)
+      this.newFeed=[]
     }
   }
   openDialog(id?:number){
@@ -131,8 +132,9 @@ export class LandingPageComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        console.log(`Dialog result: ${result.team[0]} `);
-        this.post.postProposal(result,this.userId).subscribe(
+        console.log(`Dialog result: ${result.teams.length} `);
+
+        this.post.postProposal(result,this.userId,result.teams).subscribe(
           (data)=>this.selectApi(this.type),
           (error)=>console.log("error")
         )
