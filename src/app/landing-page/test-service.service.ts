@@ -11,7 +11,7 @@ export class TestServiceService {
     key: new FormControl(null),
     title: new FormControl(' ',[Validators.required]),
     description: new FormControl(' ',[Validators.required,Validators.maxLength(300)]),
-    teams: new FormArray([]),
+    teams: new FormControl(),
   });
   
   initialiseFormGroup(){
