@@ -1,5 +1,5 @@
 import { getLocaleDateFormat } from '@angular/common';
-import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
+import { Component, OnInit,Input,Output,EventEmitter, ɵExtraLocaleDataIndex } from '@angular/core';
 import { MatStartDate } from '@angular/material/datepicker';
 import { Post } from 'src/app/post';
 
@@ -10,8 +10,9 @@ import { Post } from 'src/app/post';
 })
 
 export class FilterComponent implements OnInit {
-  @Input() post:Post;
+  @Input()
   public sDate
+  public newEdate
   public eDate
   public data:Date[]
   public typePost="teamPost";
@@ -34,8 +35,14 @@ export class FilterComponent implements OnInit {
   }
   processFilter()
   { 
-    this.data = [this.sDate,this.eDate];
-   
+    //  eeDate:Date = this.eDate;
+    //  eeDate
+
+    //  yourDate.setDate(yourDate.getDate() + 1);
+    this.newEdate = this.eDate;
+    this.newEdate = this.newEdate.setDate(this.newEdate.getDate()+1);
+    this.data = [this.sDate,this.newEdate];
+    
     if(this.sDate==null || this.eDate==null)
     this.message = "Please select both Start date and End date !!"
     else

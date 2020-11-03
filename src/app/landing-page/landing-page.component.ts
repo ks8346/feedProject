@@ -87,9 +87,11 @@ export class LandingPageComponent implements OnInit {
   }
   onFilter(data){
     if(Array.isArray(data)){
-      console.log(data)
-      this.data.startDate=data[0]
-      this.data.endDate=data[1]
+
+     // console.log(data)
+      this.data.startDate=new Date(data[0])
+      this.data.endDate=new Date(data[1])
+
     }
     else{
       this.type=data;
