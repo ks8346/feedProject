@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import {FormGroup, FormControl,Validators} from '@angular/forms';
+import {FormGroup, FormControl,Validators, FormArray} from '@angular/forms';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +11,7 @@ export class TestServiceService {
     key: new FormControl(null),
     title: new FormControl(' ',[Validators.required]),
     description: new FormControl(' ',[Validators.required,Validators.maxLength(300)]),
-    teams: new FormControl(0),
+    teams: new FormControl(),
   });
   
   initialiseFormGroup(){

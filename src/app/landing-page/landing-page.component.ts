@@ -43,7 +43,7 @@ export class LandingPageComponent implements OnInit {
     else if(this.type==="teamPost"){
       this.getProposals.getTeamPosts(this.data,this.teamId).subscribe((data)=>{
         this.feed=data
-        console.log(data)
+        console.log(data),(error)=>console.log(error)
       },
       (error)=>console.log(error));
     }
@@ -108,7 +108,7 @@ export class LandingPageComponent implements OnInit {
       this.data.page=this.page.toString()
       console.log(this.data)
       if(this.type.includes("allPost")){
-        this.getProposals.getAllNextPost(this.data).subscribe((data)=>this.newFeed=data)
+        this.getProposals.getAllNextPost(this.data).subscribe((data)=>this.newFeed=data,(error)=>console.log(error))
         this.getProposals.getAllNextPost(this.data).subscribe((data)=>this.newFeed=data)
       }
       else if(this.type.includes("teamPost")){

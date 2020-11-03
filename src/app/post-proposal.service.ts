@@ -13,7 +13,6 @@ export class PostProposalService {
       data.key="null"
     }
     data.userId=userId
-    data.teams=[JSON.parse(teams)]
     console.log(data)
     return this.http.post(this.url,data)
   }
