@@ -35,13 +35,11 @@ export class FilterComponent implements OnInit {
   }
   processFilter()
   { 
-    //  eeDate:Date = this.eDate;
-    //  eeDate
+   
 
     //  yourDate.setDate(yourDate.getDate() + 1);
-    this.newEdate = this.eDate;
-    this.newEdate = this.newEdate.setDate(this.newEdate.getDate()+1);
-    this.data = [this.sDate,this.newEdate];
+    
+    this.data = [this.sDate,this.eDate];
     
     if(this.sDate==null || this.eDate==null)
     this.message = "Please select both Start date and End date !!"
