@@ -14,8 +14,8 @@
                 <mat-form-field appearance="fill" class="field">
                     <mat-label>Title</mat-label>
                     <input formControlName="title" matInput placeholder="Title" >
-                    <mat-error *ngIf="service.form.controls['title'].errors?.required">This field is Mandatory</mat-error>
-                    <mat-error *ngIf="service.form.controls['title'].errors?.minlength">Minimum 5 characters needed</mat-error>
+                    <mat-error *ngIf="this.service.form.controls['title'].errors?.required">This field is Mandatory</mat-error>
+                    <mat-error *ngIf="this.service.form.controls['title'].errors?.minlength">Minimum 5 characters needed</mat-error>
                 </mat-form-field>
                 <br>
                 <mat-form-field class="field" >
@@ -32,7 +32,7 @@
                 </mat-form-field>
             </div>
     <div mat-dialog-action align=end>
-       <button mat-raised-button [mat-dialog-close]="this.service.form.value" color="primary" type="submit" [disabled]= "service.form.invalid" (click)=onSubmit()>submit</button>
+       <button mat-raised-button [mat-dialog-close]="this.service.form.value" color="primary" type="submit" [disabled]= "service.form.invalid || service.form.controls['title'].pristine || service.form.controls['Proposal'].pristine " (click)=onSubmit()>submit</button>
        <button mat-raised-button [mat-dialog-close] color="danger" (click)=onClear()>clear</button>
     </div>
 </form>
