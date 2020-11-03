@@ -28,6 +28,7 @@ export class LandingPageComponent implements OnInit {
   width:number;
   padding:number;
   endMessage="";
+  morePost=true;
   startDate=new Date()
   data=new FeedParams(new Date(this.startDate.setDate(this.startDate.getDate()-30)),new Date(),"0","3")
   constructor(public post:PostProposalService,public dialog:MatDialog,private getProposals:GetProposalsService,private teams:TeamsService) { }
@@ -100,26 +101,37 @@ export class LandingPageComponent implements OnInit {
     this.page=0
     this.data.page=this.page.toString()
     this.selectApi(this.type)
+    this.morePost=true
   }
   onScroll(){
-    if(this.newFeed.length>0 || this.page==0){
+    if((this.newFeed.length>0 || this.page==0)&&this.morePost){
       this.page++
       this.data.page=this.page.toString()
       console.log(this.data)
       if(this.type.includes("allPost")){
-        this.getProposals.getAllNextPost(this.data).subscribe((data)=>this.newFeed=data,(error)=>console.log(error))
-        this.getProposals.getAllNextPost(this.data).subscribe((data)=>this.newFeed=data)
+        this.getProposals.getAllNextPost(this.data).subscribe((data)=>this.newFeed=data,(error)=>{
+          if(error.status==404){
+          this.morePost=false
+        }})
+        // this.getProposals.getAllNextPost(this.data).subscribe((data)=>this.newFeed=data)
       }
       else if(this.type.includes("teamPost")){
-        this.getProposals.getTeamNextPost(this.data,this.teamId).subscribe((data)=>this.newFeed=data)
-        this.getProposals.getTeamNextPost(this.data,this.teamId).subscribe((data)=>this.newFeed=data)
+        this.getProposals.getTeamNextPost(this.data,this.teamId).subscribe((data)=>this.newFeed=data,(error)=>{
+          if(error.status==404){
+          this.morePost=false
+        }})
+        // this.getProposals.getTeamNextPost(this.data,this.teamId).subscribe((data)=>this.newFeed=data)
       }
       else if(this.type.includes("yourPost")){
-        this.getProposals.getYourNextPost(this.data,this.userId).subscribe((data)=>this.newFeed=data)
-        this.getProposals.getYourNextPost(this.data,this.userId).subscribe((data)=>this.newFeed=data)
+        this.getProposals.getYourNextPost(this.data,this.userId).subscribe((data)=>this.newFeed=data,(error)=>{
+          if(error.status==404){
+          this.morePost=false
+        }})
+        // this.getProposals.getYourNextPost(this.data,this.userId).subscribe((data)=>this.newFeed=data)
       }      
       if(this.newFeed.length==0){
         this.endMessage="No More Posts"
+        
       }
       this.feed=this.feed.concat(this.newFeed)
       console.log(this.newFeed)

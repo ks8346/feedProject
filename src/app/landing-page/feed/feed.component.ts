@@ -49,7 +49,9 @@ export class FeedComponent implements OnInit {
         }
       }
     )
-    this.proposalWork.getLike(this.post.id,this.userId).subscribe((data)=>this.hasLiked=data)
+    console.log(this.post.id)
+    this.proposalWork.getLike(this.post.id,this.userId).subscribe((data)=>{this.hasLiked=data,console.log(this.hasLiked)})
+
     
     
   }
@@ -60,12 +62,20 @@ export class FeedComponent implements OnInit {
         this.comments.push({'id':this.post.id,'comment':this.new_comment,'creationDate':new Date(),'user':{
           'id':2,'name':"Kartik Sachdeva"}}) 
         this.new_comment=""
-      },error=>console.error(error)
+        this.commentsMessage="Comments"
+      },(error)=>{
+        if(error.status=200){
+          this.comments.push({'id':this.post.id,'comment':this.new_comment,'creationDate':new Date(),'user':{
+            'id':2,'name':"Kartik Sachdeva"}}) 
+          this.new_comment=""
+          this.commentsMessage="Comments"
+        }
+      }
       
     );
-    this.comments.push({'id':this.post.id,'comment':this.new_comment,'creationDate':new Date(),'user':{
-      'id':2,'name':"Kartik"}})
-    this.new_comment=""
+    // this.comments.push({'id':this.post.id,'comment':this.new_comment,'creationDate':new Date(),'user':{
+    //   'id':2,'name':"Kartik"}})
+    // this.new_comment=""
     console.log(id+this.userId+this.new_comment)
     // this.comments.push(this.new_comment)
     // this.new_comment.text=""
@@ -75,7 +85,7 @@ export class FeedComponent implements OnInit {
       this.proposalWork.postDislike(id,this.userId)
     }
     else{
-      this.proposalWork.postLike(id,this.userId)
+      this.proposalWork.postLike(id,this.userId).subscribe((data)=>console.log(data))
     }
     console.log("liked "+id+this.userId)
     if(this.hasLiked){
