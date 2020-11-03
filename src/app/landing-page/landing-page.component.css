@@ -1,6 +1,7 @@
 .contain{
     overflow-x: hidden;
     width: 100%;
+    
 }
 .header{
     height:40px;
@@ -30,6 +31,8 @@
     background-color: white; 
     position:fixed;
     width:24%;
+    z-index: 300;
+    height: 100%;
 }
 .scrollable{
     widows: 50%;
@@ -37,7 +40,8 @@
 }
 .feed{
     margin-right: 2%;
-    z-index: 999;
+    background-color: white;
+    z-index: 200;
 }
 .postButton{
     width:100%;

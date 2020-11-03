@@ -3,6 +3,8 @@ export class FeedParams {
     public startDate:Date,
     public endDate:Date,
     public page:string,
-    public size:string
+    public size:string,
+    public userId?,
+    public teamId?
     ){}
 }
